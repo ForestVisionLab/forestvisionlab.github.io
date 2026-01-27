@@ -374,13 +374,11 @@ const renderComparisons = (comparisons) => {
   const placeholder = select("#comparison-placeholder");
   const beforeImg = select("#comparison-before");
   const afterImg = select("#comparison-after");
-  const slider = select("#comparison-slider");
   const handle = select("#comparison-handle");
   const caption = select("#comparison-caption");
   const title = select("#comparison-title");
-  const presets = select("#comparison-presets");
 
-  if (!tabs || !frame || !placeholder || !beforeImg || !afterImg || !slider) return;
+  if (!tabs || !frame || !placeholder || !beforeImg || !afterImg) return;
 
   const data = comparisons && comparisons.length ? comparisons : DEFAULT_SITE.comparisons;
   tabs.innerHTML = "";
@@ -393,9 +391,6 @@ const renderComparisons = (comparisons) => {
   const setReveal = (value) => {
     const clamped = Math.min(100, Math.max(0, Number(value)));
     frame.style.setProperty("--reveal", `${clamped}%`);
-    if (slider.value !== `${clamped}`) {
-      slider.value = `${clamped}`;
-    }
     if (handle) {
       handle.style.left = `${clamped}%`;
     }
@@ -457,18 +452,36 @@ const renderComparisons = (comparisons) => {
     tabs.appendChild(button);
   });
 
-  if (presets) {
-    presets.querySelectorAll("button").forEach((button) => {
-      button.addEventListener("click", () => {
-        const value = Number(button.dataset.value || 50);
-        setReveal(value);
-      });
-    });
-  }
+  let isDragging = false;
+  const updateFromPointer = (event) => {
+    const rect = frame.getBoundingClientRect();
+    const percent = ((event.clientX - rect.left) / rect.width) * 100;
+    setReveal(percent);
+  };
 
-  slider.addEventListener("input", (event) => {
-    setReveal(event.target.value);
+  frame.addEventListener("pointerdown", (event) => {
+    if (event.button !== 0) return;
+    isDragging = true;
+    frame.setPointerCapture(event.pointerId);
+    updateFromPointer(event);
   });
+
+  frame.addEventListener("pointermove", (event) => {
+    if (!isDragging) return;
+    updateFromPointer(event);
+  });
+
+  const stopDragging = (event) => {
+    if (!isDragging) return;
+    isDragging = false;
+    if (frame.hasPointerCapture(event.pointerId)) {
+      frame.releasePointerCapture(event.pointerId);
+    }
+  };
+
+  frame.addEventListener("pointerup", stopDragging);
+  frame.addEventListener("pointerleave", stopDragging);
+  frame.addEventListener("pointercancel", stopDragging);
 
   const initial = data[0];
   if (title) {
