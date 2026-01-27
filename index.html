@@ -59,6 +59,59 @@
         <ol class="pipeline" id="method-steps"></ol>
       </section>
 
+      <section class="section" id="peeling-demo">
+        <h2>Interactive Peeling Demo</h2>
+        <p class="muted">
+          Drag the slider to compare the original canopy view vs. the peeled ground-only rendering.
+        </p>
+        <div class="comparison-controls">
+          <div class="comparison-tabs" id="comparison-tabs" role="tablist" aria-label="Example selector"></div>
+        </div>
+        <div class="comparison-card" id="comparison-card">
+          <div class="comparison-header">
+            <h3 id="comparison-title">Example 1</h3>
+            <p class="muted" id="comparison-caption"></p>
+          </div>
+          <div class="comparison-frame" id="comparison-frame">
+            <div class="comparison-placeholder" id="comparison-placeholder"></div>
+            <div class="comparison-image comparison-image--after" aria-hidden="true">
+              <img
+                id="comparison-after"
+                alt="After: peeled ground-only rendering"
+                loading="lazy"
+              />
+            </div>
+            <div class="comparison-image comparison-image--before" aria-hidden="true">
+              <img
+                id="comparison-before"
+                alt="Before: original canopy view"
+                loading="lazy"
+              />
+            </div>
+            <div class="comparison-label comparison-label--before">Before</div>
+            <div class="comparison-label comparison-label--after">After</div>
+            <div class="comparison-handle" id="comparison-handle" aria-hidden="true">
+              <span class="comparison-handle-line"></span>
+              <span class="comparison-handle-knob"></span>
+            </div>
+          </div>
+          <input
+            class="comparison-slider"
+            type="range"
+            id="comparison-slider"
+            min="0"
+            max="100"
+            value="50"
+            aria-label="Reveal before image"
+          />
+          <div class="comparison-presets" id="comparison-presets" aria-label="Preset slider positions">
+            <button type="button" data-value="25">25%</button>
+            <button type="button" data-value="50">50%</button>
+            <button type="button" data-value="75">75%</button>
+          </div>
+        </div>
+      </section>
+
       <section class="section" id="capture">
         <h2>Capture Guidelines</h2>
         <ul class="icon-list" id="capture-guidelines"></ul>

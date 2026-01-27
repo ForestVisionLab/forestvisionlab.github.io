@@ -102,6 +102,29 @@
     "arxiv": "https://arxiv.org/abs/COMING_SOON",
     "arxivStatus": "arXiv: coming this week"
   },
+  "comparisons": [
+    {
+      "id": "ex1",
+      "title": "Example 1 – Dense canopy",
+      "caption": "Original vs. peeled ground-only rendering.",
+      "before": "assets/img/comparisons/ex1_before.jpg",
+      "after": "assets/img/comparisons/ex1_after.jpg"
+    },
+    {
+      "id": "ex2",
+      "title": "Example 2 – Harsh shadows",
+      "caption": "Diffuse-light capture improves visibility; slider shows peeling outcome.",
+      "before": "assets/img/comparisons/ex2_before.jpg",
+      "after": "assets/img/comparisons/ex2_after.jpg"
+    },
+    {
+      "id": "ex3",
+      "title": "Example 3 – Segmentation-based filtering",
+      "caption": "Before vs. segmentation-masked canopy removal (optional).",
+      "before": "assets/img/comparisons/ex3_before.jpg",
+      "after": "assets/img/comparisons/ex3_after.jpg"
+    }
+  ],
   "quickLinks": [
     {
       "label": "Paper PDF",
