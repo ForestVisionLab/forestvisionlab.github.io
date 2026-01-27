@@ -1,6 +1,6 @@
 const DEFAULT_SITE = {
-  title: "Under-Canopy Terrain Reconstruction in Dense Forests Using RGB Imaging and Neural 3D Reconstruction",
-  subtitle: "",
+  title: "Seeing Beneath Dense Forest Canopies",
+  subtitle: "Under-Canopy Terrain Reconstruction in Dense Forests Using RGB Imaging and Neural 3D Reconstruction",
   venue: "WACV 2026 Workshop (CV4EO)",
   description:
     "WACV 2026 Workshop (CV4EO) paper on under-canopy terrain reconstruction in dense forests using RGB imaging and neural 3D reconstruction.",
