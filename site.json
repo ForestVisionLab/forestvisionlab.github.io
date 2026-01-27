@@ -35,10 +35,30 @@
   ],
   "method": {
     "steps": [
-      "Capture dense RGB imagery under the canopy",
-      "Run SfM/Bundle Adjustment to estimate camera poses",
-      "Train NeRF for volumetric reconstruction",
-      "Render ground-only views with canopy removal"
+      {
+        "title": "Capture dense RGB imagery under the canopy",
+        "description": "Collect high-overlap RGB captures with near-nadir viewpoints to reveal ground gaps.",
+        "image": "assets/img/method/method-placeholder.svg",
+        "alt": "Method step: dense RGB capture under the canopy"
+      },
+      {
+        "title": "Run SfM/Bundle Adjustment to estimate camera poses",
+        "description": "Recover camera poses and sparse geometry from the captured imagery.",
+        "image": "assets/img/method/method-placeholder.svg",
+        "alt": "Method step: structure-from-motion and bundle adjustment"
+      },
+      {
+        "title": "Train NeRF for volumetric reconstruction",
+        "description": "Optimize a NeRF model to represent the volumetric scene content.",
+        "image": "assets/img/method/method-placeholder.svg",
+        "alt": "Method step: NeRF volumetric reconstruction"
+      },
+      {
+        "title": "Render ground-only views with canopy removal",
+        "description": "Filter canopy contributions to produce ground-only renderings.",
+        "image": "assets/img/method/method-placeholder.svg",
+        "alt": "Method step: ground-only rendering"
+      }
     ]
   },
   "captureGuidelines": [
