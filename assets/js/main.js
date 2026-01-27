@@ -19,10 +19,10 @@ const DEFAULT_SITE = {
   captureGuidelines: [],
   results: [],
   media: { videos: [] },
-  poster: { title: "Poster", pdf: "assets/pdfs/poster.pdf", note: "Upload poster.pdf to assets/pdfs/." },
+  poster: { title: "Poster", pdf: "", note: "Poster coming soon." },
   paper: {
     title: "Paper",
-    pdf: "assets/pdfs/paper.pdf",
+    pdf: "",
     arxiv: "https://arxiv.org/abs/COMING_SOON",
     arxivStatus: "arXiv: coming this week"
   },
@@ -33,27 +33,18 @@ const DEFAULT_SITE = {
       caption: "Original vs. peeled ground-only rendering.",
       before: "assets/img/comparisons/ex1_before.jpg",
       after: "assets/img/comparisons/ex1_after.jpg"
-    },
-    {
-      id: "ex2",
-      title: "Example 2 – Harsh shadows",
-      caption: "Diffuse-light capture improves visibility; slider shows peeling outcome.",
-      before: "assets/img/comparisons/ex2_before.jpg",
-      after: "assets/img/comparisons/ex2_after.jpg"
-    },
-    {
-      id: "ex3",
-      title: "Example 3 – Segmentation-based filtering",
-      caption: "Before vs. segmentation-masked canopy removal (optional).",
-      before: "assets/img/comparisons/ex3_before.jpg",
-      after: "assets/img/comparisons/ex3_after.jpg"
     }
   ],
   quickLinks: [],
   citation: { bibtex: "" },
   acknowledgements: "",
   contact: { email: "contact@forestvisionlab.org", note: "" },
-  logos: []
+  logos: [
+    {
+      src: "assets/img/WACV.png",
+      alt: "WACV logo"
+    }
+  ]
 };
 
 const select = (selector) => document.querySelector(selector);
