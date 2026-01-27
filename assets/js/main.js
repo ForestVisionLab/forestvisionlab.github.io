@@ -413,7 +413,7 @@ const renderComparisons = (comparisons) => {
   const setPlaceholder = (item) => {
     const id = item?.id || "exN";
     placeholder.textContent =
-      `Comparison images coming soon. Upload ${id}_before.jpg and ${id}_after.jpg to /assets/img/comparisons/`;
+      `Comparison images coming soon. Upload ${id}_before.{jpg|png|tif|tiff} and ${id}_after.{jpg|png|tif|tiff} to /assets/img/comparisons/`;
   };
 
   const setActiveTab = (id) => {
