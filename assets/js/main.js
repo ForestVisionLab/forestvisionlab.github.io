@@ -26,6 +26,29 @@ const DEFAULT_SITE = {
     arxiv: "https://arxiv.org/abs/COMING_SOON",
     arxivStatus: "arXiv: coming this week"
   },
+  comparisons: [
+    {
+      id: "ex1",
+      title: "Example 1 – Dense canopy",
+      caption: "Original vs. peeled ground-only rendering.",
+      before: "assets/img/comparisons/ex1_before.jpg",
+      after: "assets/img/comparisons/ex1_after.jpg"
+    },
+    {
+      id: "ex2",
+      title: "Example 2 – Harsh shadows",
+      caption: "Diffuse-light capture improves visibility; slider shows peeling outcome.",
+      before: "assets/img/comparisons/ex2_before.jpg",
+      after: "assets/img/comparisons/ex2_after.jpg"
+    },
+    {
+      id: "ex3",
+      title: "Example 3 – Segmentation-based filtering",
+      caption: "Before vs. segmentation-masked canopy removal (optional).",
+      before: "assets/img/comparisons/ex3_before.jpg",
+      after: "assets/img/comparisons/ex3_after.jpg"
+    }
+  ],
   quickLinks: [],
   citation: { bibtex: "" },
   acknowledgements: "",
@@ -342,6 +365,132 @@ const renderResourceCard = (containerId, resource, fallbackText) => {
   }
 };
 
+const loadImage = (src) =>
+  new Promise((resolve, reject) => {
+    if (!src) {
+      reject(new Error("Missing image src"));
+      return;
+    }
+    const img = new Image();
+    img.onload = () => resolve(src);
+    img.onerror = () => reject(new Error("Image failed"));
+    img.src = src;
+  });
+
+const renderComparisons = (comparisons) => {
+  const tabs = select("#comparison-tabs");
+  const frame = select("#comparison-frame");
+  const placeholder = select("#comparison-placeholder");
+  const beforeImg = select("#comparison-before");
+  const afterImg = select("#comparison-after");
+  const slider = select("#comparison-slider");
+  const handle = select("#comparison-handle");
+  const caption = select("#comparison-caption");
+  const title = select("#comparison-title");
+  const presets = select("#comparison-presets");
+
+  if (!tabs || !frame || !placeholder || !beforeImg || !afterImg || !slider) return;
+
+  const data = comparisons && comparisons.length ? comparisons : DEFAULT_SITE.comparisons;
+  tabs.innerHTML = "";
+  if (!data || data.length === 0) {
+    placeholder.textContent = "Comparison images coming soon.";
+    frame.classList.remove("is-ready");
+    return;
+  }
+
+  const setReveal = (value) => {
+    const clamped = Math.min(100, Math.max(0, Number(value)));
+    frame.style.setProperty("--reveal", `${clamped}%`);
+    if (slider.value !== `${clamped}`) {
+      slider.value = `${clamped}`;
+    }
+    if (handle) {
+      handle.style.left = `${clamped}%`;
+    }
+  };
+
+  const setPlaceholder = (item) => {
+    const id = item?.id || "exN";
+    placeholder.textContent =
+      `Comparison images coming soon. Upload ${id}_before.jpg and ${id}_after.jpg to /assets/img/comparisons/`;
+  };
+
+  const setActiveTab = (id) => {
+    tabs.querySelectorAll("button").forEach((button) => {
+      button.setAttribute("aria-selected", button.dataset.id === id ? "true" : "false");
+    });
+  };
+
+  const updateImages = (item) => {
+    frame.classList.remove("is-ready");
+    beforeImg.removeAttribute("src");
+    afterImg.removeAttribute("src");
+    beforeImg.setAttribute("aria-hidden", "true");
+    afterImg.setAttribute("aria-hidden", "true");
+    setPlaceholder(item);
+
+    const beforeSrc = item?.before;
+    const afterSrc = item?.after;
+    Promise.all([loadImage(beforeSrc), loadImage(afterSrc)])
+      .then(([beforeLoaded, afterLoaded]) => {
+        beforeImg.src = beforeLoaded;
+        afterImg.src = afterLoaded;
+        beforeImg.setAttribute("aria-hidden", "false");
+        afterImg.setAttribute("aria-hidden", "false");
+        frame.classList.add("is-ready");
+      })
+      .catch(() => {
+        frame.classList.remove("is-ready");
+      });
+  };
+
+  data.forEach((item, index) => {
+    const button = document.createElement("button");
+    button.type = "button";
+    button.textContent = item.title || `Example ${index + 1}`;
+    button.dataset.id = item.id || `example-${index + 1}`;
+    button.setAttribute("role", "tab");
+    button.setAttribute("aria-selected", "false");
+    button.addEventListener("click", () => {
+      setActiveTab(button.dataset.id);
+      if (title) {
+        title.textContent = item.title || `Example ${index + 1}`;
+      }
+      if (caption) {
+        caption.textContent = item.caption || "";
+      }
+      updateImages(item);
+      setReveal(50);
+    });
+    tabs.appendChild(button);
+  });
+
+  if (presets) {
+    presets.querySelectorAll("button").forEach((button) => {
+      button.addEventListener("click", () => {
+        const value = Number(button.dataset.value || 50);
+        setReveal(value);
+      });
+    });
+  }
+
+  slider.addEventListener("input", (event) => {
+    setReveal(event.target.value);
+  });
+
+  const initial = data[0];
+  if (title) {
+    title.textContent = initial.title || "Example 1";
+  }
+  if (caption) {
+    caption.textContent = initial.caption || "";
+  }
+  setActiveTab(initial.id || "ex1");
+  updateImages(initial);
+  setReveal(50);
+};
+
 const renderSite = (data) => {
   const site = { ...DEFAULT_SITE, ...data };
 
@@ -373,6 +522,7 @@ const renderSite = (data) => {
   renderQuickLinks(site.quickLinks);
   renderResourceCard("#poster-card", site.poster || DEFAULT_SITE.poster, "Poster coming soon.");
   renderResourceCard("#paper-card", site.paper || DEFAULT_SITE.paper, "Paper coming soon.");
+  renderComparisons(site.comparisons);
   updateMeta(site);
 };
 
