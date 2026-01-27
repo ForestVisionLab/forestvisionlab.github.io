@@ -1,0 +1,78 @@
+{
+  "title": "Seeing Beneath Dense Forest Canopies",
+  "subtitle": "Under-Canopy Terrain Reconstruction in Dense Forests Using RGB Imaging and Neural 3D Reconstruction",
+  "venue": "WACV 2026 Workshop (CV4EO)",
+  "lab": "Forest Vision Lab",
+  "description": "CV4EO workshop paper from the Forest Vision Lab presenting under-canopy terrain reconstruction in dense forests.",
+  "authors": [
+    {
+      "name": "Author One",
+      "affiliation": "Affiliation One"
+    },
+    {
+      "name": "Author Two",
+      "affiliation": "Affiliation Two"
+    },
+    {
+      "name": "Author Three",
+      "affiliation": "Affiliation Three"
+    }
+  ],
+  "abstract": "We present a study on reconstructing under-canopy terrain in dense forest environments using RGB imaging and neural 3D reconstruction. This placeholder abstract can be replaced with the final text before submission.",
+  "contributions": [
+    "Introduce a pipeline for under-canopy terrain reconstruction tailored to dense forest imagery.",
+    "Provide a benchmark dataset and evaluation protocol for RGB-based forest terrain recovery.",
+    "Demonstrate improvements over classical baselines with neural 3D reconstruction techniques."
+  ],
+  "media": {
+    "videos": [
+      {
+        "title": "Reconstruction Overview",
+        "caption": "End-to-end reconstruction pipeline results.",
+        "src": "assets/videos/video1.mp4",
+        "poster": "assets/videos/video1.jpg"
+      },
+      {
+        "title": "Under-Canopy Flight",
+        "caption": "Example RGB flight and generated terrain model.",
+        "src": "assets/videos/video2.mp4",
+        "poster": "assets/videos/video2.jpg"
+      },
+      {
+        "title": "Comparative Results",
+        "caption": "Comparison between baselines and CV4EO approach.",
+        "src": "assets/videos/video3.mp4",
+        "poster": "assets/videos/video3.jpg"
+      }
+    ]
+  },
+  "poster": {
+    "title": "Poster",
+    "pdf": "assets/pdfs/poster.pdf",
+    "note": "Upload poster.pdf to assets/pdfs/."
+  },
+  "paper": {
+    "title": "Paper",
+    "pdf": "assets/pdfs/paper.pdf",
+    "arxiv": "https://arxiv.org/abs/COMING_SOON",
+    "arxivStatus": "arXiv: coming this week"
+  },
+  "citation": {
+    "bibtex": "@inproceedings{cv4eo2026,\n  title = {Seeing Beneath Dense Forest Canopies},\n  author = {Author One and Author Two and Author Three},\n  booktitle = {WACV 2026 Workshop (CV4EO)},\n  year = {2026}\n}"
+  },
+  "acknowledgements": "We thank the Forest Vision Lab collaborators and the CV4EO workshop organizers.",
+  "contact": {
+    "email": "contact@forestvisionlab.org",
+    "note": "For questions about CV4EO, reach out to the Forest Vision Lab."
+  },
+  "logos": [
+    {
+      "src": "assets/img/wacv2026-logo.png",
+      "alt": "WACV 2026 logo"
+    },
+    {
+      "src": "assets/img/forest-vision-lab-logo.png",
+      "alt": "Forest Vision Lab logo"
+    }
+  ]
+}
