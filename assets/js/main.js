@@ -375,6 +375,7 @@ const renderComparisons = (comparisons) => {
   const beforeImg = select("#comparison-before");
   const afterImg = select("#comparison-after");
   const handle = select("#comparison-handle");
+  const knob = select("#comparison-handle .comparison-handle-knob");
   const caption = select("#comparison-caption");
   const title = select("#comparison-title");
 
@@ -459,14 +460,16 @@ const renderComparisons = (comparisons) => {
     setReveal(percent);
   };
 
-  frame.addEventListener("pointerdown", (event) => {
+  const dragTarget = knob || handle || frame;
+
+  dragTarget.addEventListener("pointerdown", (event) => {
     if (event.button !== 0) return;
     isDragging = true;
-    frame.setPointerCapture(event.pointerId);
+    dragTarget.setPointerCapture(event.pointerId);
     updateFromPointer(event);
   });
 
-  frame.addEventListener("pointermove", (event) => {
+  dragTarget.addEventListener("pointermove", (event) => {
     if (!isDragging) return;
     updateFromPointer(event);
   });
@@ -474,14 +477,14 @@ const renderComparisons = (comparisons) => {
   const stopDragging = (event) => {
     if (!isDragging) return;
     isDragging = false;
-    if (frame.hasPointerCapture(event.pointerId)) {
-      frame.releasePointerCapture(event.pointerId);
+    if (dragTarget.hasPointerCapture(event.pointerId)) {
+      dragTarget.releasePointerCapture(event.pointerId);
     }
   };
 
-  frame.addEventListener("pointerup", stopDragging);
-  frame.addEventListener("pointerleave", stopDragging);
-  frame.addEventListener("pointercancel", stopDragging);
+  dragTarget.addEventListener("pointerup", stopDragging);
+  dragTarget.addEventListener("pointerleave", stopDragging);
+  dragTarget.addEventListener("pointercancel", stopDragging);
 
   const initial = data[0];
   if (title) {
