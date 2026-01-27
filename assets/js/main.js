@@ -74,6 +74,15 @@ const renderAuthors = (authors) => {
     return;
   }
 
+  const removeAffiliation = (affiliation) => {
+    if (!affiliation) return "";
+    return affiliation
+      .replace(/Rafael Advanced Defense Systems inc\., Israel/gi, "")
+      .replace(/^[,\s]+|[,\s]+$/g, "")
+      .replace(/\s{2,}/g, " ")
+      .trim();
+  };
+
   authors.forEach((author) => {
     const card = document.createElement("div");
     card.className = "author-card";
@@ -83,9 +92,10 @@ const renderAuthors = (authors) => {
 
     card.appendChild(name);
 
-    if (author.affiliation) {
+    const cleanedAffiliation = removeAffiliation(author.affiliation);
+    if (cleanedAffiliation) {
       const affiliation = document.createElement("span");
-      affiliation.textContent = author.affiliation;
+      affiliation.textContent = cleanedAffiliation;
       card.appendChild(affiliation);
     }
     container.appendChild(card);
