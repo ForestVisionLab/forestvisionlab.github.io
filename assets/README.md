@@ -12,7 +12,7 @@ Use the folders below to keep project media organized.
 - Place workshop and lab logos in `assets/img/`.
 - Supported formats: PNG or SVG.
 - Recommended names:
-  - `wacv-logo.png`
+  - `WACV.png`
   - `cv4eo-logo.png` (optional)
   - `forestvisionlab-logo.png`
 - If a logo is missing, the page hides the broken element automatically.
