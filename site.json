@@ -72,33 +72,17 @@
     }
   ],
   "media": {
-    "videos": [
-      {
-        "title": "Demo Video 1",
-        "caption": "Pipeline overview and reconstruction highlights.",
-        "src": "assets/videos/demo1.mp4"
-      },
-      {
-        "title": "Demo Video 2",
-        "caption": "Under-canopy rendering examples.",
-        "src": "assets/videos/demo2.mp4"
-      },
-      {
-        "title": "Demo Video 3",
-        "caption": "Downstream task validation results.",
-        "src": "assets/videos/demo3.mp4"
-      }
-    ]
+    "videos": []
   },
   "poster": {
     "title": "Poster",
-    "pdf": "assets/pdfs/poster.pdf",
-    "note": "Upload poster.pdf to assets/pdfs/."
+    "pdf": "",
+    "note": "Poster coming soon."
   },
   "paper": {
     "title": "Paper",
-    "pdf": "assets/pdfs/paper.pdf",
-    "note": "Upload paper.pdf to assets/pdfs/.",
+    "pdf": "",
+    "note": "Paper coming soon.",
     "arxiv": "https://arxiv.org/abs/COMING_SOON",
     "arxivStatus": "arXiv: coming this week"
   },
@@ -109,31 +93,9 @@
       "caption": "Original vs. peeled ground-only rendering.",
       "before": "assets/img/comparisons/ex1_before.jpg",
       "after": "assets/img/comparisons/ex1_after.jpg"
-    },
-    {
-      "id": "ex2",
-      "title": "Example 2 – Harsh shadows",
-      "caption": "Diffuse-light capture improves visibility; slider shows peeling outcome.",
-      "before": "assets/img/comparisons/ex2_before.jpg",
-      "after": "assets/img/comparisons/ex2_after.jpg"
-    },
-    {
-      "id": "ex3",
-      "title": "Example 3 – Segmentation-based filtering",
-      "caption": "Before vs. segmentation-masked canopy removal (optional).",
-      "before": "assets/img/comparisons/ex3_before.jpg",
-      "after": "assets/img/comparisons/ex3_after.jpg"
     }
   ],
   "quickLinks": [
-    {
-      "label": "Paper PDF",
-      "href": "assets/pdfs/paper.pdf"
-    },
-    {
-      "label": "Poster PDF",
-      "href": "assets/pdfs/poster.pdf"
-    },
     {
       "label": "arXiv (coming)",
       "href": "https://arxiv.org/abs/COMING_SOON",
@@ -152,14 +114,6 @@
     {
       "src": "assets/img/WACV.png",
       "alt": "WACV logo"
-    },
-    {
-      "src": "assets/img/cv4eo-logo.png",
-      "alt": "CV4EO logo"
-    },
-    {
-      "src": "assets/img/forestvisionlab-logo.png",
-      "alt": "Forest Vision Lab logo"
     }
   ]
 }
