@@ -301,6 +301,8 @@ ol {
   border: 1px solid var(--border);
   background: #f3f5f9;
   --reveal: 50%;
+  cursor: ew-resize;
+  touch-action: none;
 }
 
 .comparison-image {
@@ -404,34 +406,6 @@ ol {
   background: #ffffff;
   border: 2px solid rgba(27, 95, 204, 0.9);
   box-shadow: 0 4px 10px rgba(15, 23, 42, 0.18);
-}
-
-.comparison-slider {
-  width: 100%;
-  margin-top: 1rem;
-  accent-color: var(--accent);
-}
-
-.comparison-presets {
-  display: flex;
-  gap: 0.5rem;
-  flex-wrap: wrap;
-  margin-top: 0.75rem;
-}
-
-.comparison-presets button {
-  border: 1px solid var(--border);
-  background: var(--card);
-  padding: 0.25rem 0.7rem;
-  border-radius: 8px;
-  cursor: pointer;
-  font-size: 0.85rem;
-  font-weight: 600;
-}
-
-.comparison-presets button:hover {
-  border-color: var(--accent);
-  color: var(--accent);
 }
 
 .muted {
