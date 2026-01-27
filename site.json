@@ -6,26 +6,26 @@
   "authors": [
     {
       "name": "Refael Sheffer",
-      "affiliation": "Rafael Advanced Defense Systems inc., Israel"
+      "affiliation": ""
     },
     {
       "name": "Chen Pinchover",
-      "affiliation": "Rafael Advanced Defense Systems inc., Israel"
+      "affiliation": ""
     },
     {
       "name": "Haim Zisman",
-      "affiliation": "Rafael Advanced Defense Systems inc., Israel"
+      "affiliation": ""
     },
     {
       "name": "Dror Ozeri",
-      "affiliation": "Rafael Advanced Defense Systems inc., Israel"
+      "affiliation": ""
     },
     {
       "name": "Roee Litman",
-      "affiliation": "Rafael Advanced Defense Systems inc., Israel"
+      "affiliation": ""
     }
   ],
-  "affiliationsNote": "Rafael Advanced Defense Systems inc., Israel",
+  "affiliationsNote": "",
   "abstract": "We present a NeRF-based pipeline that reconstructs canopy-free, photorealistic ground views using only conventional RGB drone images. We formalize capture considerations (near-nadir, high overlap/density, fine GSD, and especially diffuse light), adopt a low-light loss, and propose two complementary canopy removal approaches: DTM-based volumetric clipping and segmentation-based filtering. We demonstrate downstream tasks: search-and-rescue person detection and forest inventory (tree stem counting).",
   "contributions": [
     "RGB-only under-canopy terrain/understory rendering via differentiable volumetric reconstruction (NeRF).",

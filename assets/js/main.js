@@ -81,11 +81,13 @@ const renderAuthors = (authors) => {
     const name = document.createElement("strong");
     name.textContent = author.name || "Author";
 
-    const affiliation = document.createElement("span");
-    affiliation.textContent = author.affiliation || "";
-
     card.appendChild(name);
-    card.appendChild(affiliation);
+
+    if (author.affiliation) {
+      const affiliation = document.createElement("span");
+      affiliation.textContent = author.affiliation;
+      card.appendChild(affiliation);
+    }
     container.appendChild(card);
   });
 };
