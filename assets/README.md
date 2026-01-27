@@ -4,13 +4,18 @@ Use the folders below to keep project media organized.
 
 ## Videos
 - Place MP4 files in `assets/videos/`.
-- Recommended naming: `video1.mp4`, `video2.mp4`, `video3.mp4`.
-- Optional poster thumbnails (JPEG/PNG) should live alongside the videos (e.g., `video1.jpg`).
-- Update `site.json` under `media.videos` to point to each file.
+- Use the filenames from `site.json` (e.g., `demo1.mp4`, `demo2.mp4`, `demo3.mp4`).
+- Keep files compressed and under ~200MB for GitHub Pages.
+- Update `site.json` under `media.videos` to set titles, captions, and filenames.
 
 ## Logos
 - Place workshop and lab logos in `assets/img/`.
-- Update the `logos` array in `site.json` with each logo path and alt text.
+- Supported formats: PNG or SVG.
+- Recommended names:
+  - `wacv-logo.png`
+  - `cv4eo-logo.png` (optional)
+  - `forestvisionlab-logo.png`
+- If a logo is missing, the page hides the broken element automatically.
 
 ## PDFs
 - Poster: upload to `assets/pdfs/poster.pdf`.
@@ -20,3 +25,4 @@ Use the folders below to keep project media organized.
 ## Links & Text
 - Edit `site.json` to update the title, subtitle, abstract, author list, and citation.
 - Use the `paper.arxiv` and `paper.arxivStatus` fields for arXiv updates.
+- Quick links in the hero section are managed via the `quickLinks` array.

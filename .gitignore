@@ -1,8 +1,4 @@
 .DS_Store
 Thumbs.db
-*.swp
-*.swo
-*.log
 node_modules/
-.vscode/
-.idea/
+.cache/
