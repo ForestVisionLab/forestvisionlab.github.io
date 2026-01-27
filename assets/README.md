@@ -17,6 +17,11 @@ Use the folders below to keep project media organized.
   - `forestvisionlab-logo.png`
 - If a logo is missing, the page hides the broken element automatically.
 
+## Comparison images
+- Place before/after comparison images in `assets/img/comparisons/`.
+- Supported formats: JPG, PNG, TIFF (`.tif` or `.tiff`).
+- Update `site.json` to point each `comparisons[].before` and `comparisons[].after` entry at the uploaded filenames.
+
 ## PDFs
 - Poster: upload to `assets/pdfs/poster.pdf`.
 - Paper: upload to `assets/pdfs/paper.pdf`.
