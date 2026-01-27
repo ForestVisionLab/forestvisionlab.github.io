@@ -1,48 +1,92 @@
 {
-  "title": "Seeing Beneath Dense Forest Canopies",
-  "subtitle": "Under-Canopy Terrain Reconstruction in Dense Forests Using RGB Imaging and Neural 3D Reconstruction",
+  "title": "Under-Canopy Terrain Reconstruction in Dense Forests Using RGB Imaging and Neural 3D Reconstruction",
+  "subtitle": "NeRF-based pipeline for canopy-free, photorealistic ground views from RGB drone imagery.",
   "venue": "WACV 2026 Workshop (CV4EO)",
-  "lab": "Forest Vision Lab",
-  "description": "CV4EO workshop paper from the Forest Vision Lab presenting under-canopy terrain reconstruction in dense forests.",
+  "description": "WACV 2026 Workshop (CV4EO) paper on under-canopy terrain reconstruction in dense forests using RGB imaging and neural 3D reconstruction.",
   "authors": [
     {
-      "name": "Author One",
-      "affiliation": "Affiliation One"
+      "name": "Refael Sheffer",
+      "affiliation": "Rafael Advanced Defense Systems inc., Israel"
     },
     {
-      "name": "Author Two",
-      "affiliation": "Affiliation Two"
+      "name": "Chen Pinchover",
+      "affiliation": "Rafael Advanced Defense Systems inc., Israel"
     },
     {
-      "name": "Author Three",
-      "affiliation": "Affiliation Three"
+      "name": "Haim Zisman",
+      "affiliation": "Rafael Advanced Defense Systems inc., Israel"
+    },
+    {
+      "name": "Dror Ozeri",
+      "affiliation": "Bar-Ilan University, Israel"
+    },
+    {
+      "name": "Roee Litman",
+      "affiliation": "Bar-Ilan University, Israel"
     }
   ],
-  "abstract": "We present a study on reconstructing under-canopy terrain in dense forest environments using RGB imaging and neural 3D reconstruction. This placeholder abstract can be replaced with the final text before submission.",
+  "affiliationsNote": "(1) Rafael Advanced Defense Systems inc., Israel · (2) Bar-Ilan University, Israel",
+  "abstract": "We present a NeRF-based pipeline that reconstructs canopy-free, photorealistic ground views using only conventional RGB drone images. We formalize capture considerations (near-nadir, high overlap/density, fine GSD, and especially diffuse light), adopt a low-light loss, and propose two complementary canopy removal approaches: DTM-based volumetric clipping and segmentation-based filtering. We demonstrate downstream tasks: search-and-rescue person detection and forest inventory (tree stem counting).",
   "contributions": [
-    "Introduce a pipeline for under-canopy terrain reconstruction tailored to dense forest imagery.",
-    "Provide a benchmark dataset and evaluation protocol for RGB-based forest terrain recovery.",
-    "Demonstrate improvements over classical baselines with neural 3D reconstruction techniques."
+    "RGB-only under-canopy terrain/understory rendering via differentiable volumetric reconstruction (NeRF).",
+    "Capture protocol + illumination guidance; diffuse light recommended; adopt low-light (RAW) loss to emphasize dark pixels.",
+    "Two canopy removal modes: (a) DTM height-based cropping (ground-only integration) and (b) segmentation-based masking.",
+    "Downstream validation: person detection (SAR) and tree stem counting."
+  ],
+  "method": {
+    "steps": [
+      "Capture dense RGB imagery under the canopy",
+      "Run SfM/Bundle Adjustment to estimate camera poses",
+      "Train NeRF for volumetric reconstruction",
+      "Render ground-only views with canopy removal"
+    ]
+  },
+  "captureGuidelines": [
+    {
+      "icon": "🧭",
+      "text": "Near-nadir views maximize canopy penetration."
+    },
+    {
+      "icon": "📸",
+      "text": "High image density helps see ground through gaps (diminishing returns beyond ~20–25 samples)."
+    },
+    {
+      "icon": "📏",
+      "text": "Fine GSD (~1–2 cm) improves canopy/ground separation."
+    },
+    {
+      "icon": "☁️",
+      "text": "Diffuse light (overcast/twilight) improves exposure balance; direct sunlight introduces harsh shadows."
+    }
+  ],
+  "results": [
+    {
+      "label": "Person detection on AOS (RGB-only pipeline)",
+      "value": "80.5% AP",
+      "note": "89.6% AP excluding two low-quality scenes."
+    },
+    {
+      "label": "Thermal AOS baseline",
+      "value": "92.2% AP",
+      "note": "Reference baseline for comparison."
+    }
   ],
   "media": {
     "videos": [
       {
-        "title": "Reconstruction Overview",
-        "caption": "End-to-end reconstruction pipeline results.",
-        "src": "assets/videos/video1.mp4",
-        "poster": "assets/videos/video1.jpg"
+        "title": "Demo Video 1",
+        "caption": "Pipeline overview and reconstruction highlights.",
+        "src": "assets/videos/demo1.mp4"
       },
       {
-        "title": "Under-Canopy Flight",
-        "caption": "Example RGB flight and generated terrain model.",
-        "src": "assets/videos/video2.mp4",
-        "poster": "assets/videos/video2.jpg"
+        "title": "Demo Video 2",
+        "caption": "Under-canopy rendering examples.",
+        "src": "assets/videos/demo2.mp4"
       },
       {
-        "title": "Comparative Results",
-        "caption": "Comparison between baselines and CV4EO approach.",
-        "src": "assets/videos/video3.mp4",
-        "poster": "assets/videos/video3.jpg"
+        "title": "Demo Video 3",
+        "caption": "Downstream task validation results.",
+        "src": "assets/videos/demo3.mp4"
       }
     ]
   },
@@ -54,24 +98,44 @@
   "paper": {
     "title": "Paper",
     "pdf": "assets/pdfs/paper.pdf",
+    "note": "Upload paper.pdf to assets/pdfs/.",
     "arxiv": "https://arxiv.org/abs/COMING_SOON",
     "arxivStatus": "arXiv: coming this week"
   },
+  "quickLinks": [
+    {
+      "label": "Paper PDF",
+      "href": "assets/pdfs/paper.pdf"
+    },
+    {
+      "label": "Poster PDF",
+      "href": "assets/pdfs/poster.pdf"
+    },
+    {
+      "label": "arXiv (coming)",
+      "href": "https://arxiv.org/abs/COMING_SOON",
+      "external": true
+    }
+  ],
   "citation": {
-    "bibtex": "@inproceedings{cv4eo2026,\n  title = {Seeing Beneath Dense Forest Canopies},\n  author = {Author One and Author Two and Author Three},\n  booktitle = {WACV 2026 Workshop (CV4EO)},\n  year = {2026}\n}"
+    "bibtex": "@inproceedings{cv4eo2026,\n  title = {Under-Canopy Terrain Reconstruction in Dense Forests Using RGB Imaging and Neural 3D Reconstruction},\n  author = {Sheffer, Refael and Pinchover, Chen and Zisman, Haim and Ozeri, Dror and Litman, Roee},\n  booktitle = {WACV 2026 Workshop (CV4EO)},\n  year = {2026},\n  note = {BibTeX placeholder; update before final release}\n}"
   },
-  "acknowledgements": "We thank the Forest Vision Lab collaborators and the CV4EO workshop organizers.",
+  "acknowledgements": "Acknowledgements coming soon. Add funding sources, collaborators, and dataset providers.",
   "contact": {
     "email": "contact@forestvisionlab.org",
-    "note": "For questions about CV4EO, reach out to the Forest Vision Lab."
+    "note": "Placeholder contact email; update with the paper corresponding author."
   },
   "logos": [
     {
-      "src": "assets/img/wacv2026-logo.png",
-      "alt": "WACV 2026 logo"
+      "src": "assets/img/wacv-logo.png",
+      "alt": "WACV logo"
     },
     {
-      "src": "assets/img/forest-vision-lab-logo.png",
+      "src": "assets/img/cv4eo-logo.png",
+      "alt": "CV4EO logo"
+    },
+    {
+      "src": "assets/img/forestvisionlab-logo.png",
       "alt": "Forest Vision Lab logo"
     }
   ]
