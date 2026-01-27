@@ -10,10 +10,30 @@ const DEFAULT_SITE = {
   contributions: [],
   method: {
     steps: [
-      "Capture dense RGB drone imagery",
-      "Run SfM/Bundle Adjustment",
-      "Train NeRF reconstruction",
-      "Render ground-only views"
+      {
+        title: "Capture dense RGB imagery",
+        description: "Collect high-overlap RGB captures under the canopy for robust reconstruction.",
+        image: "assets/img/method/method-placeholder.svg",
+        alt: "Placeholder method graph for dense RGB capture"
+      },
+      {
+        title: "Run SfM/Bundle Adjustment",
+        description: "Estimate camera poses and geometry from the captured imagery.",
+        image: "assets/img/method/method-placeholder.svg",
+        alt: "Placeholder method graph for SfM and bundle adjustment"
+      },
+      {
+        title: "Train NeRF reconstruction",
+        description: "Optimize a NeRF model to represent volumetric scene content.",
+        image: "assets/img/method/method-placeholder.svg",
+        alt: "Placeholder method graph for NeRF training"
+      },
+      {
+        title: "Render ground-only views",
+        description: "Remove canopy contributions to produce ground-only renderings.",
+        image: "assets/img/method/method-placeholder.svg",
+        alt: "Placeholder method graph for ground-only rendering"
+      }
     ]
   },
   captureGuidelines: [],
@@ -141,9 +161,45 @@ const renderMethod = (steps) => {
   list.innerHTML = "";
 
   const values = steps && steps.length ? steps : DEFAULT_SITE.method.steps;
-  values.forEach((text) => {
+  values.forEach((step, index) => {
     const item = document.createElement("li");
-    item.textContent = text;
+    item.className = "pipeline-step";
+
+    if (typeof step === "string") {
+      item.textContent = step;
+      list.appendChild(item);
+      return;
+    }
+
+    const title = document.createElement("h3");
+    title.textContent = step.title || `Step ${index + 1}`;
+
+    const imageWrap = document.createElement("div");
+    imageWrap.className = "pipeline-image";
+
+    if (step.image) {
+      const img = document.createElement("img");
+      img.src = step.image;
+      img.alt = step.alt || step.title || `Method step ${index + 1}`;
+      img.loading = "lazy";
+      img.addEventListener("error", () => {
+        img.replaceWith(createMediaPlaceholder("Method image coming soon."));
+      });
+      imageWrap.appendChild(img);
+    } else {
+      imageWrap.appendChild(createMediaPlaceholder("Upload method image to assets/img/method/"));
+    }
+
+    const description = document.createElement("p");
+    description.className = "muted";
+    description.textContent = step.description || "";
+
+    item.appendChild(title);
+    item.appendChild(imageWrap);
+    if (step.description) {
+      item.appendChild(description);
+    }
+
     list.appendChild(item);
   });
 };

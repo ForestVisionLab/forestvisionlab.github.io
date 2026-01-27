@@ -162,6 +162,28 @@ ol {
   padding: 0.75rem 1rem;
 }
 
+.pipeline-step {
+  display: grid;
+  gap: 0.6rem;
+}
+
+.pipeline-step h3 {
+  font-size: 1.05rem;
+}
+
+.pipeline-image {
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background: #ffffff;
+}
+
+.pipeline-image img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
 .icon-list {
   list-style: none;
   display: grid;
