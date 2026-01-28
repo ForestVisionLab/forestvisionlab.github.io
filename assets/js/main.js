@@ -450,6 +450,10 @@ const renderComparisons = (comparisons) => {
   });
 
   dragTarget.addEventListener("pointermove", (event) => {
+    if (event.pointerType === "mouse") {
+      updateFromPointer(event);
+      return;
+    }
     if (!isDragging) return;
     updateFromPointer(event);
   });
