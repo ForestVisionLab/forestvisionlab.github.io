@@ -68,6 +68,12 @@
       {
         "title": "Downstream App Example: Tree Counting",
         "caption": "Tree stem counting demo from the downstream app pipeline.",
+        "description": "We export the trained NeRF into a dense 3D point cloud (sampling the density field) and apply a three-step post-processing pipeline to obtain a foliage-free cloud dominated by vertical stem fragments: (1) color-based foliage removal using segmentation, (2) a 3D crop to prune remaining high-canopy branches, and (3) a crop from below to remove terrain by retaining only points above the local DTM. On the processed cloud, we run HDBSCAN to cluster stem candidates, filter clusters by volumetric extent, estimate stem tilt using PCA to remove non-vertical candidates, and merge stacked clusters that likely belong to the same tree.",
+        "overlayLabels": {
+          "left": "HDBSCAN clusters",
+          "center": "Full scene",
+          "right": "After ground & foliage removal"
+        },
         "src": "assets/videos/downstream-tree-counting.mp4"
       }
     ]

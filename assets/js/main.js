@@ -216,16 +216,40 @@ const renderVideos = (videos) => {
     const title = document.createElement("h3");
     title.textContent = video.title || "Video";
 
-    const caption = document.createElement("p");
-    caption.className = "muted";
-    caption.textContent = video.caption || "";
-
     card.appendChild(title);
 
     if (video.src) {
+      const videoWrap = document.createElement("div");
+      videoWrap.className = "video-wrap";
+
+      if (video.overlayLabels) {
+        const overlay = document.createElement("div");
+        overlay.className = "video-overlay";
+
+        const left = document.createElement("span");
+        left.className = "tag left";
+        left.textContent = video.overlayLabels.left || "";
+
+        const center = document.createElement("span");
+        center.className = "tag center";
+        center.textContent = video.overlayLabels.center || "";
+
+        const right = document.createElement("span");
+        right.className = "tag right";
+        right.textContent = video.overlayLabels.right || "";
+
+        overlay.appendChild(left);
+        overlay.appendChild(center);
+        overlay.appendChild(right);
+        videoWrap.appendChild(overlay);
+      }
+
       const videoEl = document.createElement("video");
-      videoEl.setAttribute("controls", "controls");
+      videoEl.setAttribute("autoplay", "autoplay");
+      videoEl.setAttribute("loop", "loop");
+      videoEl.setAttribute("muted", "muted");
       videoEl.setAttribute("playsinline", "playsinline");
+      videoEl.setAttribute("preload", "metadata");
       if (video.poster) {
         videoEl.setAttribute("poster", video.poster);
       }
@@ -236,15 +260,28 @@ const renderVideos = (videos) => {
       videoEl.appendChild(source);
 
       videoEl.addEventListener("error", () => {
-        videoEl.replaceWith(createMediaPlaceholder("Video coming soon."));
+        videoWrap.replaceWith(createMediaPlaceholder("Video coming soon."));
       });
 
-      card.appendChild(videoEl);
+      videoWrap.appendChild(videoEl);
+      card.appendChild(videoWrap);
     } else {
       card.appendChild(createMediaPlaceholder("Video coming soon."));
     }
 
-    card.appendChild(caption);
+    if (video.caption) {
+      const caption = document.createElement("p");
+      caption.className = "muted";
+      caption.textContent = video.caption;
+      card.appendChild(caption);
+    }
+
+    if (video.description) {
+      const description = document.createElement("p");
+      description.className = "media-description";
+      description.textContent = video.description;
+      card.appendChild(description);
+    }
     grid.appendChild(card);
   });
 };
