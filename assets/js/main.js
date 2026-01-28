@@ -9,32 +9,9 @@ const DEFAULT_SITE = {
   abstract: "",
   contributions: [],
   method: {
-    steps: [
-      {
-        title: "Capture dense RGB imagery",
-        description: "Collect high-overlap RGB captures under the canopy for robust reconstruction.",
-        image: "assets/img/method/method-placeholder.svg",
-        alt: "Placeholder method graph for dense RGB capture"
-      },
-      {
-        title: "Run SfM/Bundle Adjustment",
-        description: "Estimate camera poses and geometry from the captured imagery.",
-        image: "assets/img/method/method-placeholder.svg",
-        alt: "Placeholder method graph for SfM and bundle adjustment"
-      },
-      {
-        title: "Train NeRF reconstruction",
-        description: "Optimize a NeRF model to represent volumetric scene content.",
-        image: "assets/img/method/method-placeholder.svg",
-        alt: "Placeholder method graph for NeRF training"
-      },
-      {
-        title: "Render ground-only views",
-        description: "Remove canopy contributions to produce ground-only renderings.",
-        image: "assets/img/method/method-placeholder.svg",
-        alt: "Placeholder method graph for ground-only rendering"
-      }
-    ]
+    image: "assets/img/method/method-placeholder.svg",
+    alt: "Placeholder method overview showing data capture, reconstruction, and NeRF rendering pipeline",
+    description: "Upload the method overview image to assets/img/method/."
   },
   captureGuidelines: [],
   results: [],
@@ -155,53 +132,98 @@ const renderContributions = (items) => {
   });
 };
 
-const renderMethod = (steps) => {
-  const list = select("#method-steps");
-  if (!list) return;
-  list.innerHTML = "";
+const renderMethod = (method) => {
+  const container = select("#method-overview");
+  if (!container) return;
+  container.innerHTML = "";
 
-  const values = steps && steps.length ? steps : DEFAULT_SITE.method.steps;
-  values.forEach((step, index) => {
-    const item = document.createElement("li");
-    item.className = "pipeline-step";
+  const data = method && Object.keys(method).length ? method : DEFAULT_SITE.method;
 
-    if (typeof step === "string") {
-      item.textContent = step;
+  if (Array.isArray(data.steps) && data.steps.length) {
+    const list = document.createElement("ol");
+    list.className = "pipeline";
+
+    data.steps.forEach((step, index) => {
+      const item = document.createElement("li");
+      item.className = "pipeline-step";
+
+      if (typeof step === "string") {
+        item.textContent = step;
+        list.appendChild(item);
+        return;
+      }
+
+      const title = document.createElement("h3");
+      title.textContent = step.title || `Step ${index + 1}`;
+
+      const imageWrap = document.createElement("div");
+      imageWrap.className = "pipeline-image";
+
+      if (step.image) {
+        const img = document.createElement("img");
+        img.src = step.image;
+        img.alt = step.alt || step.title || `Method step ${index + 1}`;
+        img.loading = "lazy";
+        img.addEventListener("error", () => {
+          img.replaceWith(createMediaPlaceholder("Method image coming soon."));
+        });
+        imageWrap.appendChild(img);
+      } else {
+        imageWrap.appendChild(createMediaPlaceholder("Upload method image to assets/img/method/"));
+      }
+
+      const description = document.createElement("p");
+      description.className = "muted";
+      description.textContent = step.description || "";
+
+      item.appendChild(title);
+      item.appendChild(imageWrap);
+      if (step.description) {
+        item.appendChild(description);
+      }
+
       list.appendChild(item);
-      return;
-    }
+    });
 
+    container.appendChild(list);
+    return;
+  }
+
+  const card = document.createElement("div");
+  card.className = "method-card";
+
+  if (data.title) {
     const title = document.createElement("h3");
-    title.textContent = step.title || `Step ${index + 1}`;
+    title.textContent = data.title;
+    card.appendChild(title);
+  }
 
-    const imageWrap = document.createElement("div");
-    imageWrap.className = "pipeline-image";
+  const imageWrap = document.createElement("div");
+  imageWrap.className = "method-image";
 
-    if (step.image) {
-      const img = document.createElement("img");
-      img.src = step.image;
-      img.alt = step.alt || step.title || `Method step ${index + 1}`;
-      img.loading = "lazy";
-      img.addEventListener("error", () => {
-        img.replaceWith(createMediaPlaceholder("Method image coming soon."));
-      });
-      imageWrap.appendChild(img);
-    } else {
-      imageWrap.appendChild(createMediaPlaceholder("Upload method image to assets/img/method/"));
-    }
+  if (data.image) {
+    const img = document.createElement("img");
+    img.src = data.image;
+    img.alt = data.alt || "Method overview placeholder image";
+    img.loading = "lazy";
+    img.addEventListener("error", () => {
+      img.replaceWith(createMediaPlaceholder("Method image coming soon."));
+    });
+    imageWrap.appendChild(img);
+  } else {
+    imageWrap.appendChild(createMediaPlaceholder("Upload method image to assets/img/method/"));
+  }
 
+  card.appendChild(imageWrap);
+
+  if (data.description) {
     const description = document.createElement("p");
     description.className = "muted";
-    description.textContent = step.description || "";
+    description.textContent = data.description;
+    card.appendChild(description);
+  }
 
-    item.appendChild(title);
-    item.appendChild(imageWrap);
-    if (step.description) {
-      item.appendChild(description);
-    }
-
-    list.appendChild(item);
-  });
+  container.appendChild(card);
 };
 
 const renderGuidelines = (items) => {
@@ -577,7 +599,7 @@ const renderSite = (data) => {
 
   renderAuthors(site.authors);
   renderContributions(site.contributions);
-  renderMethod(site.method?.steps || []);
+  renderMethod(site.method || DEFAULT_SITE.method);
   renderGuidelines(site.captureGuidelines);
   renderResults(site.results);
   renderVideos(site.media?.videos || []);
