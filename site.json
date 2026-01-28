@@ -64,7 +64,13 @@
     }
   ],
   "media": {
-    "videos": []
+    "videos": [
+      {
+        "title": "Downstream App Example: Tree Counting",
+        "caption": "Tree stem counting demo from the downstream app pipeline.",
+        "src": "assets/videos/downstream-tree-counting.mp4"
+      }
+    ]
   },
   "poster": {
     "title": "Poster",
