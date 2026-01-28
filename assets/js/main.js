@@ -343,7 +343,17 @@ const loadImage = (src) =>
       return;
     }
     const img = new Image();
-    img.onload = () => resolve(src);
+    img.decoding = "async";
+    img.onload = () => {
+      if (typeof img.decode === "function") {
+        img
+          .decode()
+          .then(() => resolve(src))
+          .catch(() => resolve(src));
+        return;
+      }
+      resolve(src);
+    };
     img.onerror = () => reject(new Error("Image failed"));
     img.src = src;
   });
@@ -403,6 +413,8 @@ const renderComparisons = (comparisons) => {
       .then(([beforeLoaded, afterLoaded]) => {
         beforeImg.src = beforeLoaded;
         afterImg.src = afterLoaded;
+        beforeImg.decoding = "async";
+        afterImg.decoding = "async";
         beforeImg.setAttribute("aria-hidden", "false");
         afterImg.setAttribute("aria-hidden", "false");
         frame.classList.add("is-ready");
@@ -434,10 +446,22 @@ const renderComparisons = (comparisons) => {
   });
 
   let isDragging = false;
-  const updateFromPointer = (event) => {
-    const rect = frame.getBoundingClientRect();
-    const percent = ((event.clientX - rect.left) / rect.width) * 100;
-    setReveal(percent);
+  let rafId = null;
+  let pendingClientX = null;
+  const updateFromPointer = (clientX) => {
+    pendingClientX = clientX;
+    if (rafId) return;
+    rafId = window.requestAnimationFrame(() => {
+      if (pendingClientX === null) {
+        rafId = null;
+        return;
+      }
+      const rect = frame.getBoundingClientRect();
+      const percent = ((pendingClientX - rect.left) / rect.width) * 100;
+      setReveal(percent);
+      rafId = null;
+      pendingClientX = null;
+    });
   };
 
   const dragTarget = knob || handle || frame;
@@ -446,16 +470,12 @@ const renderComparisons = (comparisons) => {
     if (event.button !== 0) return;
     isDragging = true;
     dragTarget.setPointerCapture(event.pointerId);
-    updateFromPointer(event);
+    updateFromPointer(event.clientX);
   });
 
   dragTarget.addEventListener("pointermove", (event) => {
-    if (event.pointerType === "mouse") {
-      updateFromPointer(event);
-      return;
-    }
     if (!isDragging) return;
-    updateFromPointer(event);
+    updateFromPointer(event.clientX);
   });
 
   const stopDragging = (event) => {
