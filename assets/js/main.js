@@ -401,8 +401,7 @@ const renderComparisons = (comparisons) => {
   const placeholder = select("#comparison-placeholder");
   const beforeImg = select("#comparison-before");
   const afterImg = select("#comparison-after");
-  const handle = select("#comparison-handle");
-  const knob = select("#comparison-handle .comparison-handle-knob");
+  const slider = select("#comparison-slider");
   const caption = select("#comparison-caption");
   const title = select("#comparison-title");
 
@@ -419,8 +418,8 @@ const renderComparisons = (comparisons) => {
   const setReveal = (value) => {
     const clamped = Math.min(100, Math.max(0, Number(value)));
     frame.style.setProperty("--reveal", `${clamped}%`);
-    if (handle) {
-      handle.style.left = `${clamped}%`;
+    if (slider) {
+      slider.value = `${clamped}`;
     }
   };
 
@@ -482,50 +481,11 @@ const renderComparisons = (comparisons) => {
     tabs.appendChild(button);
   });
 
-  let isDragging = false;
-  let rafId = null;
-  let pendingClientX = null;
-  const updateFromPointer = (clientX) => {
-    pendingClientX = clientX;
-    if (rafId) return;
-    rafId = window.requestAnimationFrame(() => {
-      if (pendingClientX === null) {
-        rafId = null;
-        return;
-      }
-      const rect = frame.getBoundingClientRect();
-      const percent = ((pendingClientX - rect.left) / rect.width) * 100;
-      setReveal(percent);
-      rafId = null;
-      pendingClientX = null;
+  if (slider) {
+    slider.addEventListener("input", (event) => {
+      setReveal(event.target.value);
     });
-  };
-
-  const dragTarget = knob || handle || frame;
-
-  dragTarget.addEventListener("pointerdown", (event) => {
-    if (event.button !== 0) return;
-    isDragging = true;
-    dragTarget.setPointerCapture(event.pointerId);
-    updateFromPointer(event.clientX);
-  });
-
-  dragTarget.addEventListener("pointermove", (event) => {
-    if (!isDragging) return;
-    updateFromPointer(event.clientX);
-  });
-
-  const stopDragging = (event) => {
-    if (!isDragging) return;
-    isDragging = false;
-    if (dragTarget.hasPointerCapture(event.pointerId)) {
-      dragTarget.releasePointerCapture(event.pointerId);
-    }
-  };
-
-  dragTarget.addEventListener("pointerup", stopDragging);
-  dragTarget.addEventListener("pointerleave", stopDragging);
-  dragTarget.addEventListener("pointercancel", stopDragging);
+  }
 
   const initial = data[0];
   if (title) {
