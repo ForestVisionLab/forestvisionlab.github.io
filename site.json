@@ -33,11 +33,6 @@
     "Two canopy removal modes: (a) DTM height-based cropping (ground-only integration) and (b) segmentation-based masking.",
     "Downstream validation: person detection (SAR) and tree stem counting."
   ],
-  "method": {
-    "image": "assets/img/method/method-placeholder.svg",
-    "alt": "Method overview placeholder showing capture, reconstruction, and NeRF rendering pipeline",
-    "description": "Upload the method overview image to assets/img/method/."
-  },
   "captureGuidelines": [
     {
       "icon": "🧭",

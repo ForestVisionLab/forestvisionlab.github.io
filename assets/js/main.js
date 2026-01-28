@@ -8,11 +8,6 @@ const DEFAULT_SITE = {
   affiliationsNote: "",
   abstract: "",
   contributions: [],
-  method: {
-    image: "assets/img/method/method-placeholder.svg",
-    alt: "Placeholder method overview showing data capture, reconstruction, and NeRF rendering pipeline",
-    description: "Upload the method overview image to assets/img/method/."
-  },
   captureGuidelines: [],
   results: [],
   media: { videos: [] },
@@ -132,99 +127,6 @@ const renderContributions = (items) => {
   });
 };
 
-const renderMethod = (method) => {
-  const container = select("#method-overview");
-  if (!container) return;
-  container.innerHTML = "";
-
-  const data = method && Object.keys(method).length ? method : DEFAULT_SITE.method;
-
-  if (Array.isArray(data.steps) && data.steps.length) {
-    const list = document.createElement("ol");
-    list.className = "pipeline";
-
-    data.steps.forEach((step, index) => {
-      const item = document.createElement("li");
-      item.className = "pipeline-step";
-
-      if (typeof step === "string") {
-        item.textContent = step;
-        list.appendChild(item);
-        return;
-      }
-
-      const title = document.createElement("h3");
-      title.textContent = step.title || `Step ${index + 1}`;
-
-      const imageWrap = document.createElement("div");
-      imageWrap.className = "pipeline-image";
-
-      if (step.image) {
-        const img = document.createElement("img");
-        img.src = step.image;
-        img.alt = step.alt || step.title || `Method step ${index + 1}`;
-        img.loading = "lazy";
-        img.addEventListener("error", () => {
-          img.replaceWith(createMediaPlaceholder("Method image coming soon."));
-        });
-        imageWrap.appendChild(img);
-      } else {
-        imageWrap.appendChild(createMediaPlaceholder("Upload method image to assets/img/method/"));
-      }
-
-      const description = document.createElement("p");
-      description.className = "muted";
-      description.textContent = step.description || "";
-
-      item.appendChild(title);
-      item.appendChild(imageWrap);
-      if (step.description) {
-        item.appendChild(description);
-      }
-
-      list.appendChild(item);
-    });
-
-    container.appendChild(list);
-    return;
-  }
-
-  const card = document.createElement("div");
-  card.className = "method-card";
-
-  if (data.title) {
-    const title = document.createElement("h3");
-    title.textContent = data.title;
-    card.appendChild(title);
-  }
-
-  const imageWrap = document.createElement("div");
-  imageWrap.className = "method-image";
-
-  if (data.image) {
-    const img = document.createElement("img");
-    img.src = data.image;
-    img.alt = data.alt || "Method overview placeholder image";
-    img.loading = "lazy";
-    img.addEventListener("error", () => {
-      img.replaceWith(createMediaPlaceholder("Method image coming soon."));
-    });
-    imageWrap.appendChild(img);
-  } else {
-    imageWrap.appendChild(createMediaPlaceholder("Upload method image to assets/img/method/"));
-  }
-
-  card.appendChild(imageWrap);
-
-  if (data.description) {
-    const description = document.createElement("p");
-    description.className = "muted";
-    description.textContent = data.description;
-    card.appendChild(description);
-  }
-
-  container.appendChild(card);
-};
 
 const renderGuidelines = (items) => {
   const list = select("#capture-guidelines");
@@ -599,7 +501,6 @@ const renderSite = (data) => {
 
   renderAuthors(site.authors);
   renderContributions(site.contributions);
-  renderMethod(site.method || DEFAULT_SITE.method);
   renderGuidelines(site.captureGuidelines);
   renderResults(site.results);
   renderVideos(site.media?.videos || []);
