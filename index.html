@@ -85,10 +85,16 @@
             </div>
             <div class="comparison-label comparison-label--before">Before</div>
             <div class="comparison-label comparison-label--after">After</div>
-            <div class="comparison-handle" id="comparison-handle" aria-hidden="true">
-              <span class="comparison-handle-line"></span>
-              <span class="comparison-handle-knob"></span>
-            </div>
+          </div>
+          <div class="comparison-slider" aria-label="Reveal slider">
+            <input
+              id="comparison-slider"
+              type="range"
+              min="0"
+              max="100"
+              value="50"
+              aria-label="Reveal before image"
+            />
           </div>
         </div>
       </section>

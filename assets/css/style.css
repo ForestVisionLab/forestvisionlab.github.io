@@ -409,35 +409,14 @@ ol {
   right: 0.8rem;
 }
 
-.comparison-handle {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: var(--reveal);
-  transform: translateX(-50%);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  pointer-events: auto;
-  z-index: 3;
+.comparison-slider {
+  margin-top: 1rem;
 }
 
-.comparison-handle-line {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  width: 2px;
-  background: rgba(27, 95, 204, 0.8);
-}
-
-.comparison-handle-knob {
-  width: 18px;
-  height: 18px;
-  border-radius: 50%;
-  background: #ffffff;
-  border: 2px solid rgba(27, 95, 204, 0.9);
-  box-shadow: 0 4px 10px rgba(15, 23, 42, 0.18);
-  cursor: ew-resize;
+.comparison-slider input[type="range"] {
+  width: 100%;
+  accent-color: var(--accent);
+  cursor: pointer;
 }
 
 .muted {
