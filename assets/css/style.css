@@ -223,6 +223,7 @@ ol {
   left: 12px;
   right: 12px;
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
   gap: 0.5rem;
@@ -240,8 +241,11 @@ ol {
   color: #ffffff;
   font-size: 0.75rem;
   font-weight: 600;
-  line-height: 1;
+  line-height: 1.35;
   text-align: center;
+  flex: 1 1 0;
+  min-width: 0;
+  white-space: normal;
 }
 
 .media-description {
@@ -481,5 +485,6 @@ pre {
 
   .video-overlay .tag {
     font-size: 0.7rem;
+    width: 100%;
   }
 }
