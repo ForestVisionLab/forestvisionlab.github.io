@@ -25,7 +25,7 @@ body {
 
 .hero {
   border-bottom: 1px solid var(--border);
-  padding: 0.6rem 1.5rem 0.8rem;
+  padding: 0.5rem 1.5rem 0.6rem;
   background: linear-gradient(180deg, #ffffff 0%, #f3f6fb 100%);
 }
 
@@ -34,7 +34,7 @@ body {
   margin: 0 auto;
   display: flex;
   flex-wrap: wrap;
-  gap: 1.25rem;
+  gap: 1rem;
   align-items: flex-start;
   justify-content: space-between;
 }
@@ -48,14 +48,14 @@ body {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 1rem;
+  gap: 0.75rem;
   justify-content: space-between;
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.5rem;
 }
 
 .hero h1 {
-  font-size: clamp(2rem, 3vw, 2.8rem);
-  margin-bottom: 0.6rem;
+  font-size: clamp(1.85rem, 2.6vw, 2.6rem);
+  margin-bottom: 0.45rem;
 }
 
 .venue {
@@ -67,8 +67,8 @@ body {
 }
 
 .subtitle {
-  font-size: 1.05rem;
-  margin-bottom: 0.6rem;
+  font-size: 1rem;
+  margin-bottom: 0.45rem;
   color: var(--muted);
 }
 
@@ -119,16 +119,17 @@ body {
 }
 
 .hero-demo-title {
-  font-size: 1.35rem;
-  margin-bottom: 0.2rem;
+  font-size: 1.2rem;
+  margin-bottom: 0.15rem;
 }
 
 .hero-demo-caption {
-  margin-bottom: 0.35rem;
+  margin-bottom: 0.25rem;
+  font-size: 0.95rem;
 }
 
 .hero-authors {
-  margin: 0.5rem 0 0.75rem;
+  margin: 0.4rem 0 0.6rem;
 }
 
 .hero-authors .author-link {
@@ -323,9 +324,9 @@ ol {
 .comparison-controls {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.75rem;
+  gap: 0.6rem;
   align-items: center;
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.6rem;
 }
 
 .comparison-tabs {
@@ -356,7 +357,7 @@ ol {
   width: 100%;
   border: 1px solid var(--border);
   border-radius: 16px;
-  padding: 0.95rem;
+  padding: 0.75rem;
   background: #ffffff;
   box-shadow: 0 12px 32px rgba(15, 23, 42, 0.05);
 }
@@ -368,14 +369,14 @@ ol {
 .comparison-header {
   display: flex;
   flex-direction: column;
-  gap: 0.3rem;
-  margin-bottom: 0.6rem;
+  gap: 0.2rem;
+  margin-bottom: 0.45rem;
 }
 
 .comparison-frame {
   position: relative;
   width: 100%;
-  aspect-ratio: 16 / 9;
+  aspect-ratio: 21 / 9;
   border-radius: 14px;
   overflow: hidden;
   border: 1px solid var(--border);
