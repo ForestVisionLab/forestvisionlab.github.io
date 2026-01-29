@@ -125,6 +125,21 @@ body {
   margin-bottom: 0.5rem;
 }
 
+.hero-authors {
+  margin: 0.5rem 0 0.75rem;
+}
+
+.hero-authors .author-link {
+  font-weight: 600;
+  color: var(--text);
+  text-decoration: none;
+}
+
+.hero-authors .author-link:hover,
+.hero-authors .author-link:focus {
+  text-decoration: underline;
+}
+
 main {
   max-width: var(--max-width);
   margin: 0 auto;
