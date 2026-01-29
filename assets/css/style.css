@@ -449,11 +449,7 @@ ol {
 }
 
 .comparison-slider {
-  position: absolute;
-  top: 0.6rem;
-  left: 0.8rem;
-  right: 0.8rem;
-  z-index: 5;
+  margin-top: 0.6rem;
 }
 
 .comparison-slider input[type="range"] {
