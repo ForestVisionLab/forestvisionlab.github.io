@@ -245,11 +245,11 @@ const renderVideos = (videos) => {
       }
 
       const videoEl = document.createElement("video");
-      videoEl.setAttribute("autoplay", "autoplay");
-      videoEl.setAttribute("loop", "loop");
-      videoEl.setAttribute("muted", "muted");
-      videoEl.setAttribute("playsinline", "playsinline");
-      videoEl.setAttribute("preload", "metadata");
+      videoEl.autoplay = true;
+      videoEl.loop = true;
+      videoEl.muted = true;
+      videoEl.playsInline = true;
+      videoEl.preload = "metadata";
       if (video.poster) {
         videoEl.setAttribute("poster", video.poster);
       }
@@ -262,6 +262,18 @@ const renderVideos = (videos) => {
       videoEl.addEventListener("error", () => {
         videoWrap.replaceWith(createMediaPlaceholder("Video coming soon."));
       });
+
+      const tryAutoPlay = () => {
+        const playAttempt = videoEl.play();
+        if (playAttempt && typeof playAttempt.catch === "function") {
+          playAttempt.catch(() => {
+            videoEl.controls = true;
+          });
+        }
+      };
+
+      videoEl.addEventListener("loadedmetadata", tryAutoPlay, { once: true });
+      videoEl.addEventListener("canplay", tryAutoPlay, { once: true });
 
       videoWrap.appendChild(videoEl);
       card.appendChild(videoWrap);
