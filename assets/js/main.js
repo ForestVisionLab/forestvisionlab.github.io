@@ -150,12 +150,11 @@ const renderHeroAuthors = (authors) => {
   }
 
   authors.forEach((author, index) => {
-    const link = document.createElement("a");
-    link.className = "author-link";
-    link.textContent = author.name || "Author";
-    link.href = "#authors";
-    link.dataset.author = author.name || "Author";
-    container.appendChild(link);
+    const name = document.createElement("span");
+    name.className = "author-link";
+    name.textContent = author.name || "Author";
+    name.dataset.author = author.name || "Author";
+    container.appendChild(name);
 
     if (index < authors.length - 1) {
       const separator = document.createElement("span");
