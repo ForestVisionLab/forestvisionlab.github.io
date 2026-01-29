@@ -89,23 +89,54 @@ const renderAuthors = (authors) => {
       .trim();
   };
 
-  authors.forEach((author) => {
-    const card = document.createElement("div");
-    card.className = "author-card";
-
-    const name = document.createElement("strong");
-    name.textContent = author.name || "Author";
-
-    card.appendChild(name);
-
+  const affiliationMap = new Map();
+  const authorEntries = authors.map((author) => {
     const cleanedAffiliation = removeAffiliation(author.affiliation);
     if (cleanedAffiliation) {
-      const affiliation = document.createElement("span");
-      affiliation.textContent = cleanedAffiliation;
-      card.appendChild(affiliation);
+      if (!affiliationMap.has(cleanedAffiliation)) {
+        affiliationMap.set(cleanedAffiliation, affiliationMap.size + 1);
+      }
     }
-    container.appendChild(card);
+    return {
+      name: author.name || "Author",
+      affiliation: cleanedAffiliation
+    };
   });
+
+  authorEntries.forEach((author, index) => {
+    const name = document.createElement("span");
+    name.className = "author-chip";
+    name.textContent = author.name;
+
+    const affiliationIndex = author.affiliation ? affiliationMap.get(author.affiliation) : null;
+    if (affiliationIndex) {
+      const sup = document.createElement("sup");
+      sup.textContent = `${affiliationIndex}`;
+      name.appendChild(sup);
+    }
+
+    container.appendChild(name);
+
+    if (index < authorEntries.length - 1) {
+      const separator = document.createElement("span");
+      separator.textContent = "•";
+      separator.className = "muted";
+      container.appendChild(separator);
+    }
+  });
+
+  const affiliationsNote = select("#affiliations-note");
+  if (!affiliationsNote) return;
+
+  if (affiliationMap.size === 0) {
+    affiliationsNote.textContent = "";
+    return;
+  }
+
+  const affiliationsLine = Array.from(affiliationMap.entries())
+    .map(([affiliation, index]) => `${index} ${affiliation}`)
+    .join(" · ");
+  affiliationsNote.textContent = affiliationsLine;
 };
 
 const renderContributions = (items) => {
@@ -525,7 +556,6 @@ const renderSite = (data) => {
   setText("#acknowledgements-text", site.acknowledgements, "Acknowledgements coming soon.");
   setText("#contact-note", site.contact?.note || "", "");
   setText("#bibtex", site.citation?.bibtex || "BibTeX will be available soon.");
-  setText("#affiliations-note", site.affiliationsNote || "", "");
 
   const emailEl = select("#contact-email");
   if (emailEl && site.contact?.email) {
@@ -537,6 +567,10 @@ const renderSite = (data) => {
   setText("#year", year.toString());
 
   renderAuthors(site.authors);
+  const affiliationsNote = select("#affiliations-note");
+  if (affiliationsNote && site.affiliationsNote && !affiliationsNote.textContent) {
+    affiliationsNote.textContent = site.affiliationsNote;
+  }
   renderContributions(site.contributions);
   renderGuidelines(site.captureGuidelines);
   renderResults(site.results);
