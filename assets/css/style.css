@@ -25,7 +25,7 @@ body {
 
 .hero {
   border-bottom: 1px solid var(--border);
-  padding: 1.1rem 1.5rem;
+  padding: 0.85rem 1.5rem 1rem;
   background: linear-gradient(180deg, #ffffff 0%, #f3f6fb 100%);
 }
 
@@ -54,7 +54,7 @@ body {
 
 .hero h1 {
   font-size: clamp(2rem, 3vw, 2.8rem);
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.6rem;
 }
 
 .venue {
@@ -67,7 +67,7 @@ body {
 
 .subtitle {
   font-size: 1.05rem;
-  margin-bottom: 0.8rem;
+  margin-bottom: 0.6rem;
   color: var(--muted);
 }
 
@@ -118,11 +118,11 @@ body {
 
 .hero-demo-title {
   font-size: 1.35rem;
-  margin-bottom: 0.35rem;
+  margin-bottom: 0.2rem;
 }
 
 .hero-demo-caption {
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.5rem;
 }
 
 main {
@@ -308,7 +308,7 @@ ol {
   flex-wrap: wrap;
   gap: 0.75rem;
   align-items: center;
-  margin-bottom: 1rem;
+  margin-bottom: 0.75rem;
 }
 
 .comparison-tabs {
@@ -338,7 +338,7 @@ ol {
   max-width: 980px;
   border: 1px solid var(--border);
   border-radius: 16px;
-  padding: 1.25rem;
+  padding: 1.1rem;
   background: #ffffff;
   box-shadow: 0 12px 32px rgba(15, 23, 42, 0.05);
 }
