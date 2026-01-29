@@ -34,6 +34,50 @@
           </p>
           <div class="quick-links" id="quick-links"></div>
         </div>
+        <div class="hero-demo" id="hero-demo">
+          <h2 class="hero-demo-title">Interactive Peeling Demo</h2>
+          <p class="muted hero-demo-caption">
+            Drag across the image to compare the original canopy view vs. the peeled ground-only rendering.
+          </p>
+          <div class="comparison-controls">
+            <div class="comparison-tabs" id="comparison-tabs" role="tablist" aria-label="Example selector"></div>
+          </div>
+          <div class="comparison-card comparison-card--hero" id="comparison-card">
+            <div class="comparison-header">
+              <h3 id="comparison-title">Example 1</h3>
+              <p class="muted" id="comparison-caption"></p>
+            </div>
+            <div class="comparison-frame" id="comparison-frame">
+              <div class="comparison-placeholder" id="comparison-placeholder"></div>
+              <div class="comparison-image comparison-image--after" aria-hidden="true">
+                <img
+                  id="comparison-after"
+                  alt="After: peeled ground-only rendering"
+                  loading="lazy"
+                />
+              </div>
+              <div class="comparison-image comparison-image--before" aria-hidden="true">
+                <img
+                  id="comparison-before"
+                  alt="Before: original canopy view"
+                  loading="lazy"
+                />
+              </div>
+              <div class="comparison-label comparison-label--before">Before</div>
+              <div class="comparison-label comparison-label--after">After</div>
+            </div>
+            <div class="comparison-slider" aria-label="Reveal slider">
+              <input
+                id="comparison-slider"
+                type="range"
+                min="0"
+                max="100"
+                value="50"
+                aria-label="Reveal before image"
+              />
+            </div>
+          </div>
+        </div>
       </div>
     </header>
 
@@ -52,51 +96,6 @@
       <section class="section" id="contributions">
         <h2>Key Contributions</h2>
         <ul id="contributions-list"></ul>
-      </section>
-
-      <section class="section" id="peeling-demo">
-        <h2>Interactive Peeling Demo</h2>
-        <p class="muted">
-          Drag across the image to compare the original canopy view vs. the peeled ground-only rendering.
-        </p>
-        <div class="comparison-controls">
-          <div class="comparison-tabs" id="comparison-tabs" role="tablist" aria-label="Example selector"></div>
-        </div>
-        <div class="comparison-card" id="comparison-card">
-          <div class="comparison-header">
-            <h3 id="comparison-title">Example 1</h3>
-            <p class="muted" id="comparison-caption"></p>
-          </div>
-          <div class="comparison-frame" id="comparison-frame">
-            <div class="comparison-placeholder" id="comparison-placeholder"></div>
-            <div class="comparison-image comparison-image--after" aria-hidden="true">
-              <img
-                id="comparison-after"
-                alt="After: peeled ground-only rendering"
-                loading="lazy"
-              />
-            </div>
-            <div class="comparison-image comparison-image--before" aria-hidden="true">
-              <img
-                id="comparison-before"
-                alt="Before: original canopy view"
-                loading="lazy"
-              />
-            </div>
-            <div class="comparison-label comparison-label--before">Before</div>
-            <div class="comparison-label comparison-label--after">After</div>
-          </div>
-          <div class="comparison-slider" aria-label="Reveal slider">
-            <input
-              id="comparison-slider"
-              type="range"
-              min="0"
-              max="100"
-              value="50"
-              aria-label="Reveal before image"
-            />
-          </div>
-        </div>
       </section>
 
       <section class="section" id="capture">
