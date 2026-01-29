@@ -21,7 +21,8 @@ const DEFAULT_SITE = {
   comparisons: [
     {
       id: "ex1",
-      title: "Example 1 – Dense canopy",
+      tabLabel: "Example 1",
+      title: "Dense canopy",
       caption: "Original vs. peeled ground-only rendering.",
       before: "assets/img/comparisons/ex1_before.jpg",
       after: "assets/img/comparisons/ex1_after.jpg"
@@ -510,7 +511,7 @@ const renderComparisons = (comparisons) => {
   data.forEach((item, index) => {
     const button = document.createElement("button");
     button.type = "button";
-    button.textContent = item.title || `Example ${index + 1}`;
+    button.textContent = item.tabLabel || item.title || `Example ${index + 1}`;
     button.dataset.id = item.id || `example-${index + 1}`;
     button.setAttribute("role", "tab");
     button.setAttribute("aria-selected", "false");
