@@ -215,16 +215,16 @@ ol {
 .video-frame {
   position: relative;
   width: 100%;
-  aspect-ratio: 16 / 9;
+  aspect-ratio: auto;
   border: 1px solid var(--border);
   border-radius: 14px;
   overflow: hidden;
-  background: #000000;
+  background: transparent;
 }
 
 .video-frame video {
   width: 100%;
-  height: 100%;
+  height: auto;
   max-height: 70vh;
   object-fit: contain;
   display: block;
