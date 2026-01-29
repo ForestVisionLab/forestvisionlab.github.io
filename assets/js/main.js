@@ -222,6 +222,9 @@ const renderVideos = (videos) => {
       const videoWrap = document.createElement("div");
       videoWrap.className = "video-wrap";
 
+      const videoFrame = document.createElement("div");
+      videoFrame.className = "video-frame";
+
       if (video.overlayLabels) {
         const overlay = document.createElement("div");
         overlay.className = "video-overlay";
@@ -241,7 +244,7 @@ const renderVideos = (videos) => {
         overlay.appendChild(left);
         overlay.appendChild(center);
         overlay.appendChild(right);
-        videoWrap.appendChild(overlay);
+        videoFrame.appendChild(overlay);
       }
 
       const videoEl = document.createElement("video");
@@ -275,7 +278,8 @@ const renderVideos = (videos) => {
       videoEl.addEventListener("loadedmetadata", tryAutoPlay, { once: true });
       videoEl.addEventListener("canplay", tryAutoPlay, { once: true });
 
-      videoWrap.appendChild(videoEl);
+      videoFrame.appendChild(videoEl);
+      videoWrap.appendChild(videoFrame);
       card.appendChild(videoWrap);
     } else {
       card.appendChild(createMediaPlaceholder("Video coming soon."));
