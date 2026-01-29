@@ -72,6 +72,15 @@ body {
   color: var(--muted);
 }
 
+.hero-micro-abstract {
+  font-size: 1.05rem;
+  line-height: 1.5;
+  color: #333;
+  max-width: 560px;
+  margin: 0.9rem 0 1.1rem;
+  font-weight: 400;
+}
+
 .quick-links {
   display: flex;
   flex-wrap: wrap;
