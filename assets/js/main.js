@@ -140,6 +140,32 @@ const renderAuthors = (authors) => {
   affiliationsNote.textContent = affiliationsLine;
 };
 
+const renderHeroAuthors = (authors) => {
+  const container = select("#hero-authors");
+  if (!container) return;
+  container.innerHTML = "";
+
+  if (!authors || authors.length === 0) {
+    return;
+  }
+
+  authors.forEach((author, index) => {
+    const link = document.createElement("a");
+    link.className = "author-link";
+    link.textContent = author.name || "Author";
+    link.href = "#authors";
+    link.dataset.author = author.name || "Author";
+    container.appendChild(link);
+
+    if (index < authors.length - 1) {
+      const separator = document.createElement("span");
+      separator.textContent = "•";
+      separator.className = "muted";
+      container.appendChild(separator);
+    }
+  });
+};
+
 const renderContributions = (items) => {
   const list = select("#contributions-list");
   if (!list) return;
@@ -568,6 +594,7 @@ const renderSite = (data) => {
   setText("#year", year.toString());
 
   renderAuthors(site.authors);
+  renderHeroAuthors(site.authors);
   const affiliationsNote = select("#affiliations-note");
   if (affiliationsNote && site.affiliationsNote && !affiliationsNote.textContent) {
     affiliationsNote.textContent = site.affiliationsNote;
