@@ -362,7 +362,7 @@ ol {
   overflow: hidden;
   border: 1px solid var(--border);
   background: #f3f5f9;
-  --reveal: 50%;
+  --reveal: 0%;
   cursor: ew-resize;
   touch-action: none;
   user-select: none;
@@ -449,7 +449,11 @@ ol {
 }
 
 .comparison-slider {
-  margin-top: 1rem;
+  position: absolute;
+  top: 0.6rem;
+  left: 0.8rem;
+  right: 0.8rem;
+  z-index: 5;
 }
 
 .comparison-slider input[type="range"] {
