@@ -86,9 +86,9 @@
   "paper": {
     "title": "Paper",
     "pdf": "",
-    "note": "Paper coming soon.",
-    "arxiv": "https://arxiv.org/abs/COMING_SOON",
-    "arxivStatus": "arXiv: coming this week"
+    "note": "Paper available on arXiv.",
+    "arxiv": "https://arxiv.org/abs/2601.22861",
+    "arxivStatus": "arXiv: 2601.22861"
   },
   "comparisons": [
     {
@@ -102,8 +102,8 @@
   ],
   "quickLinks": [
     {
-      "label": "arXiv (coming)",
-      "href": "https://arxiv.org/abs/COMING_SOON",
+      "label": "arXiv",
+      "href": "https://arxiv.org/abs/2601.22861",
       "external": true
     }
   ],

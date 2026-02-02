@@ -15,8 +15,8 @@ const DEFAULT_SITE = {
   paper: {
     title: "Paper",
     pdf: "",
-    arxiv: "https://arxiv.org/abs/COMING_SOON",
-    arxivStatus: "arXiv: coming this week"
+    arxiv: "https://arxiv.org/abs/2601.22861",
+    arxivStatus: "arXiv: 2601.22861"
   },
   comparisons: [
     {
