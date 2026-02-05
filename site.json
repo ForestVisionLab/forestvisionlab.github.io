@@ -102,6 +102,11 @@
   ],
   "quickLinks": [
     {
+      "label": "Method Overview",
+      "href": "#pipeline",
+      "external": false
+    },
+    {
       "label": "arXiv",
       "href": "https://arxiv.org/abs/2601.22861",
       "external": true
