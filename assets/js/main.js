@@ -28,7 +28,7 @@ const DEFAULT_SITE = {
       after: "assets/img/comparisons/ex1_after.jpg"
     }
   ],
-  quickLinks: [],
+  quickLinks: [{ label: "Method Overview", href: "#pipeline", external: false }],
   citation: { bibtex: "" },
   acknowledgements: "",
   contact: { email: "contact@forestvisionlab.org", note: "" },
