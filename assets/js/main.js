@@ -610,6 +610,20 @@ const renderSite = (data) => {
   updateMeta(site);
 };
 
+document.addEventListener("visibilitychange", () => {
+  if (document.hidden) {
+    return;
+  }
+
+  const videos = document.querySelectorAll("video");
+  videos.forEach((video) => {
+    const playAttempt = video.play();
+    if (playAttempt && typeof playAttempt.catch === "function") {
+      playAttempt.catch(() => {});
+    }
+  });
+});
+
 fetch("site.json")
   .then((response) => {
     if (!response.ok) {
