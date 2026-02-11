@@ -26,6 +26,14 @@ const DEFAULT_SITE = {
       caption: "Original vs. peeled ground-only rendering.",
       before: "assets/img/comparisons/ex1_before.jpg",
       after: "assets/img/comparisons/ex1_after.jpg"
+    },
+    {
+      id: "before1",
+      tabLabel: "Pinecone example",
+      title: "Pinecone peeling",
+      caption: "Before and after peeling comparison.",
+      before: "assets/img/comparisons/before1.png",
+      after: "assets/img/comparisons/after1.png"
     }
   ],
   quickLinks: [{ label: "Method Overview", href: "#pipeline", external: false }],

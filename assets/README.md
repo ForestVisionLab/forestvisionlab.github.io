@@ -20,6 +20,7 @@ Use the folders below to keep project media organized.
 ## Comparison images
 - Place before/after comparison images in `assets/img/comparisons/`.
 - Supported formats: JPG, PNG, TIFF (`.tif` or `.tiff`).
+- Placeholder pair currently configured: `before1.png` and `after1.png`.
 - Update `site.json` to point each `comparisons[].before` and `comparisons[].after` entry at the uploaded filenames.
 
 ## PDFs
