@@ -93,7 +93,7 @@
   "comparisons": [
     {
       "id": "ex1",
-      "tabLabel": "AOS Dataset Example",
+      "tabLabel": "Example 1 — AOS Dataset",
       "title": "Dense canopy",
       "caption": "Original vs. peeled ground-only rendering.",
       "before": "assets/img/comparisons/ex1_before.jpg",

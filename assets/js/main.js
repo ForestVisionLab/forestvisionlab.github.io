@@ -21,7 +21,7 @@ const DEFAULT_SITE = {
   comparisons: [
     {
       id: "ex1",
-      tabLabel: "AOS Dataset Example",
+      tabLabel: "Example 1 — AOS Dataset",
       title: "Dense canopy",
       caption: "Original vs. peeled ground-only rendering.",
       before: "assets/img/comparisons/ex1_before.jpg",
@@ -570,7 +570,7 @@ const renderComparisons = (comparisons) => {
 
   const initial = data[0];
   if (title) {
-    title.textContent = initial.title || "AOS Dataset Example";
+    title.textContent = initial.title || "Example 1 — AOS Dataset";
   }
   if (caption) {
     caption.textContent = initial.caption || "";
