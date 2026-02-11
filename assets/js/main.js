@@ -29,7 +29,7 @@ const DEFAULT_SITE = {
     },
     {
       id: "before1",
-      tabLabel: "Pine forest example",
+      tabLabel: "Example 2 — Pine forest example",
       title: "Pinecone peeling",
       caption: "Before and after peeling comparison.",
       before: "assets/img/comparisons/befor1.png",
