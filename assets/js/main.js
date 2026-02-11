@@ -580,6 +580,40 @@ const renderComparisons = (comparisons) => {
   setReveal(0);
 };
 
+
+const setupCitationCopy = () => {
+  const copyButton = select("#copy-bibtex");
+  const bibtex = select("#bibtex");
+  if (!copyButton || !bibtex || !navigator.clipboard) {
+    return;
+  }
+
+  const defaultLabel = "Copy citation";
+  const copiedLabel = "Copied!";
+  let resetTimer;
+
+  const setCopiedState = () => {
+    copyButton.classList.add("is-success");
+    copyButton.setAttribute("aria-label", copiedLabel);
+    copyButton.setAttribute("title", copiedLabel);
+    clearTimeout(resetTimer);
+    resetTimer = setTimeout(() => {
+      copyButton.classList.remove("is-success");
+      copyButton.setAttribute("aria-label", defaultLabel);
+      copyButton.setAttribute("title", defaultLabel);
+    }, 1200);
+  };
+
+  copyButton.addEventListener("click", async () => {
+    try {
+      await navigator.clipboard.writeText(bibtex.textContent || "");
+      setCopiedState();
+    } catch (error) {
+      console.error("Failed to copy citation", error);
+    }
+  });
+};
+
 const renderSite = (data) => {
   const site = { ...DEFAULT_SITE, ...data };
 
@@ -616,6 +650,7 @@ const renderSite = (data) => {
   renderResourceCard("#paper-card", site.paper || DEFAULT_SITE.paper, "Paper coming soon.");
   renderComparisons(site.comparisons);
   updateMeta(site);
+  setupCitationCopy();
 };
 
 document.addEventListener("visibilitychange", () => {
