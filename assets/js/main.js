@@ -21,7 +21,7 @@ const DEFAULT_SITE = {
   comparisons: [
     {
       id: "ex1",
-      tabLabel: "Example 1",
+      tabLabel: "AOS Dataset Example",
       title: "Dense canopy",
       caption: "Original vs. peeled ground-only rendering.",
       before: "assets/img/comparisons/ex1_before.jpg",
@@ -29,7 +29,7 @@ const DEFAULT_SITE = {
     },
     {
       id: "before1",
-      tabLabel: "Pinecone example",
+      tabLabel: "Pine forest example",
       title: "Pinecone peeling",
       caption: "Before and after peeling comparison.",
       before: "assets/img/comparisons/befor1.png",
@@ -570,7 +570,7 @@ const renderComparisons = (comparisons) => {
 
   const initial = data[0];
   if (title) {
-    title.textContent = initial.title || "Example 1";
+    title.textContent = initial.title || "AOS Dataset Example";
   }
   if (caption) {
     caption.textContent = initial.caption || "";
