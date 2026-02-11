@@ -35,19 +35,19 @@
   ],
   "captureGuidelines": [
     {
-      "icon": "🧭",
+      "icon": "\ud83e\udded",
       "text": "Near-nadir views maximize canopy penetration."
     },
     {
-      "icon": "📸",
-      "text": "High image density helps see ground through gaps (diminishing returns beyond ~20–25 samples)."
+      "icon": "\ud83d\udcf8",
+      "text": "High image density helps see ground through gaps (diminishing returns beyond ~20\u201325 samples)."
     },
     {
-      "icon": "📏",
-      "text": "Fine GSD (~1–2 cm) improves canopy/ground separation."
+      "icon": "\ud83d\udccf",
+      "text": "Fine GSD (~1\u20132 cm) improves canopy/ground separation."
     },
     {
-      "icon": "☁️",
+      "icon": "\u2601\ufe0f",
       "text": "Diffuse light (overcast/twilight) improves exposure balance; direct sunlight introduces harsh shadows."
     }
   ],
@@ -98,6 +98,14 @@
       "caption": "Original vs. peeled ground-only rendering.",
       "before": "assets/img/comparisons/ex1_before.jpg",
       "after": "assets/img/comparisons/ex1_after.jpg"
+    },
+    {
+      "id": "before1",
+      "tabLabel": "Pinecone example",
+      "title": "Pinecone peeling",
+      "caption": "Before and after peeling comparison.",
+      "before": "assets/img/comparisons/before1.png",
+      "after": "assets/img/comparisons/after1.png"
     }
   ],
   "quickLinks": [
