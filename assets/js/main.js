@@ -454,14 +454,24 @@ const renderResourceCard = (containerId, resource, fallbackText) => {
   }
 };
 
-const loadImage = (src) =>
-  new Promise((resolve, reject) => {
-    if (!src) {
-      reject(new Error("Missing image src"));
-      return;
-    }
+const imageLoadCache = new Map();
+
+const loadImage = (src, priority = "auto") => {
+  if (!src) {
+    return Promise.reject(new Error("Missing image src"));
+  }
+
+  if (imageLoadCache.has(src)) {
+    return imageLoadCache.get(src);
+  }
+
+  const loadPromise = new Promise((resolve, reject) => {
     const img = new Image();
     img.decoding = "async";
+    img.loading = "eager";
+    if ("fetchPriority" in img) {
+      img.fetchPriority = priority;
+    }
     img.onload = () => {
       if (typeof img.decode === "function") {
         img
@@ -472,9 +482,16 @@ const loadImage = (src) =>
       }
       resolve(src);
     };
-    img.onerror = () => reject(new Error("Image failed"));
+    img.onerror = () => {
+      imageLoadCache.delete(src);
+      reject(new Error("Image failed"));
+    };
     img.src = src;
   });
+
+  imageLoadCache.set(src, loadPromise);
+  return loadPromise;
+};
 
 const renderComparisons = (comparisons) => {
   const tabs = select("#comparison-tabs");
@@ -495,6 +512,22 @@ const renderComparisons = (comparisons) => {
     frame.classList.remove("is-ready");
     return;
   }
+
+  const [initialComparison, ...remainingComparisons] = data;
+  if (initialComparison?.before) {
+    loadImage(initialComparison.before, "high").catch(() => {});
+  }
+  if (initialComparison?.after) {
+    loadImage(initialComparison.after, "high").catch(() => {});
+  }
+  remainingComparisons.forEach((comparison) => {
+    if (comparison.before) {
+      loadImage(comparison.before).catch(() => {});
+    }
+    if (comparison.after) {
+      loadImage(comparison.after).catch(() => {});
+    }
+  });
 
   const setReveal = (value) => {
     const clamped = Math.min(100, Math.max(0, Number(value)));
@@ -526,7 +559,7 @@ const renderComparisons = (comparisons) => {
 
     const beforeSrc = item?.before;
     const afterSrc = item?.after;
-    Promise.all([loadImage(beforeSrc), loadImage(afterSrc)])
+    Promise.all([loadImage(beforeSrc, "high"), loadImage(afterSrc, "high")])
       .then(([beforeLoaded, afterLoaded]) => {
         beforeImg.src = beforeLoaded;
         afterImg.src = afterLoaded;
