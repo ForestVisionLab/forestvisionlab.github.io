@@ -590,7 +590,7 @@ const renderComparisons = (comparisons) => {
         caption.textContent = item.caption || "";
       }
       updateImages(item);
-      setReveal(0);
+      setReveal(100);
     });
     tabs.appendChild(button);
   });
@@ -610,7 +610,7 @@ const renderComparisons = (comparisons) => {
   }
   setActiveTab(initial.id || "ex1");
   updateImages(initial);
-  setReveal(0);
+  setReveal(100);
 };
 
 
