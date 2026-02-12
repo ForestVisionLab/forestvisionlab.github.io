@@ -584,7 +584,7 @@ const renderComparisons = (comparisons) => {
 const setupCitationCopy = () => {
   const copyButton = select("#copy-bibtex");
   const bibtex = select("#bibtex");
-  if (!copyButton || !bibtex || !navigator.clipboard) {
+  if (!copyButton || !bibtex) {
     return;
   }
 
@@ -604,9 +604,31 @@ const setupCitationCopy = () => {
     }, 1200);
   };
 
+  const fallbackCopyText = (text) => {
+    const textarea = document.createElement("textarea");
+    textarea.value = text;
+    textarea.setAttribute("readonly", "");
+    textarea.style.position = "fixed";
+    textarea.style.opacity = "0";
+    textarea.style.pointerEvents = "none";
+    document.body.appendChild(textarea);
+    textarea.focus();
+    textarea.select();
+    const copied = document.execCommand("copy");
+    textarea.remove();
+    if (!copied) {
+      throw new Error("Fallback copy failed");
+    }
+  };
+
   copyButton.addEventListener("click", async () => {
+    const text = bibtex.textContent || "";
     try {
-      await navigator.clipboard.writeText(bibtex.textContent || "");
+      if (navigator.clipboard && window.isSecureContext) {
+        await navigator.clipboard.writeText(text);
+      } else {
+        fallbackCopyText(text);
+      }
       setCopiedState();
     } catch (error) {
       console.error("Failed to copy citation", error);
