@@ -629,6 +629,8 @@ const renderComparisons = (comparisons) => {
 };
 
 
+let citationText = "";
+
 const setupCitationCopy = () => {
   const copyButton = select("#copy-bibtex");
   const bibtex = select("#bibtex");
@@ -669,8 +671,15 @@ const setupCitationCopy = () => {
     }
   };
 
-  copyButton.addEventListener("click", async () => {
-    const text = bibtex.textContent || "";
+  copyButton.addEventListener("click", async (event) => {
+    event.preventDefault();
+    event.stopPropagation();
+
+    const text = citationText || bibtex.textContent || "";
+    if (!text.trim()) {
+      return;
+    }
+
     try {
       if (navigator.clipboard && window.isSecureContext) {
         await navigator.clipboard.writeText(text);
@@ -693,7 +702,8 @@ const renderSite = (data) => {
   setText("#abstract-text", site.abstract, "Abstract coming soon.");
   setText("#acknowledgements-text", site.acknowledgements, "Acknowledgements coming soon.");
   setText("#contact-note", site.contact?.note || "", "");
-  setText("#bibtex", site.citation?.bibtex || "BibTeX will be available soon.");
+  citationText = site.citation?.bibtex || "BibTeX will be available soon.";
+  setText("#bibtex", citationText);
 
   const emailEl = select("#contact-email");
   if (emailEl && site.contact?.email) {
