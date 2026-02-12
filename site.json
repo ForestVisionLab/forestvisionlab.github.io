@@ -105,7 +105,10 @@
       "title": "Pinecone peeling",
       "caption": "Before and after peeling comparison.",
       "before": "assets/img/comparisons/befor1.png",
-      "after": "assets/img/comparisons/after1.png"
+      "after": "assets/img/comparisons/after1.png",
+      "zoom": 1.45,
+      "focalPoint": "50% 50%",
+      "offsetY": -22
     }
   ],
   "quickLinks": [

@@ -33,7 +33,10 @@ const DEFAULT_SITE = {
       title: "Pinecone peeling",
       caption: "Before and after peeling comparison.",
       before: "assets/img/comparisons/befor1.png",
-      after: "assets/img/comparisons/after1.png"
+      after: "assets/img/comparisons/after1.png",
+      zoom: 1.45,
+      focalPoint: "50% 50%",
+      offsetY: -22
     }
   ],
   quickLinks: [{ label: "Method Overview", href: "#pipeline", external: false }],
@@ -543,6 +546,17 @@ const renderComparisons = (comparisons) => {
       `Comparison images coming soon. Upload ${id}_before.{jpg|png|tif|tiff} and ${id}_after.{jpg|png|tif|tiff} to /assets/img/comparisons/`;
   };
 
+  const applyImageView = (item) => {
+    const zoom = Number(item?.zoom) > 1 ? Number(item.zoom) : 1;
+    const focalPoint = item?.focalPoint || "50% 15%";
+    const offsetY = Number(item?.offsetY) || 0;
+    [beforeImg, afterImg].forEach((img) => {
+      img.style.objectPosition = focalPoint;
+      img.style.transformOrigin = "center center";
+      img.style.transform = `translate3d(0, ${offsetY}%, 0) scale(${zoom})`;
+    });
+  };
+
   const setActiveTab = (id) => {
     tabs.querySelectorAll("button").forEach((button) => {
       button.setAttribute("aria-selected", button.dataset.id === id ? "true" : "false");
@@ -550,6 +564,7 @@ const renderComparisons = (comparisons) => {
   };
 
   const updateImages = (item) => {
+    applyImageView(item);
     frame.classList.remove("is-ready");
     beforeImg.removeAttribute("src");
     afterImg.removeAttribute("src");
