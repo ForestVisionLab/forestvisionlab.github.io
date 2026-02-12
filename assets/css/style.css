@@ -34,7 +34,7 @@ body {
   margin: 0 auto;
   display: flex;
   flex-wrap: wrap;
-  gap: 1rem;
+  gap: 0.6rem;
   align-items: flex-start;
   justify-content: space-between;
 }
@@ -50,12 +50,12 @@ body {
   align-items: center;
   gap: 0.75rem;
   justify-content: space-between;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.3rem;
 }
 
 .hero h1 {
   font-size: clamp(1.85rem, 2.6vw, 2.6rem);
-  margin-bottom: 0.45rem;
+  margin-bottom: 0.3rem;
 }
 
 .venue {
@@ -68,7 +68,7 @@ body {
 
 .subtitle {
   font-size: 1rem;
-  margin-bottom: 0.45rem;
+  margin-bottom: 0.3rem;
   color: var(--muted);
 }
 
@@ -129,16 +129,16 @@ body {
 
 .hero-demo-title {
   font-size: 1.2rem;
-  margin-bottom: 0.15rem;
+  margin-bottom: 0.1rem;
 }
 
 .hero-demo-caption {
-  margin-bottom: 0.25rem;
+  margin-bottom: 0.15rem;
   font-size: 0.95rem;
 }
 
 .hero-authors {
-  margin: 0.4rem 0 0.6rem;
+  margin: 0.3rem 0 0.45rem;
 }
 
 .hero-authors .author-link {
