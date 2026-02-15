@@ -11,7 +11,6 @@ const DEFAULT_SITE = {
   captureGuidelines: [],
   results: [],
   media: { videos: [] },
-  poster: { title: "Poster", pdf: "", note: "Poster coming soon." },
   paper: {
     title: "Paper",
     pdf: "",
@@ -726,7 +725,6 @@ const renderSite = (data) => {
   renderVideos(site.media?.videos || []);
   renderLogos(site.logos);
   renderQuickLinks(site.quickLinks);
-  renderResourceCard("#poster-card", site.poster || DEFAULT_SITE.poster, "Poster coming soon.");
   renderResourceCard("#paper-card", site.paper || DEFAULT_SITE.paper, "Paper coming soon.");
   renderComparisons(site.comparisons);
   updateMeta(site);
