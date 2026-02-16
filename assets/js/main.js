@@ -658,15 +658,36 @@ const setupCitationCopy = () => {
     textarea.value = text;
     textarea.setAttribute("readonly", "");
     textarea.style.position = "fixed";
+    textarea.style.top = "0";
+    textarea.style.left = "0";
     textarea.style.opacity = "0";
     textarea.style.pointerEvents = "none";
     document.body.appendChild(textarea);
     textarea.focus();
     textarea.select();
+    textarea.setSelectionRange(0, textarea.value.length);
     const copied = document.execCommand("copy");
     textarea.remove();
     if (!copied) {
       throw new Error("Fallback copy failed");
+    }
+  };
+
+  const manualSelectFallback = () => {
+    const selection = window.getSelection();
+    if (!selection) {
+      throw new Error("Selection API unavailable");
+    }
+
+    const range = document.createRange();
+    range.selectNodeContents(bibtex);
+    selection.removeAllRanges();
+    selection.addRange(range);
+
+    const copied = document.execCommand("copy");
+    selection.removeAllRanges();
+    if (!copied) {
+      throw new Error("Manual selection copy failed");
     }
   };
 
@@ -683,7 +704,11 @@ const setupCitationCopy = () => {
       if (navigator.clipboard && window.isSecureContext) {
         await navigator.clipboard.writeText(text);
       } else {
-        fallbackCopyText(text);
+        try {
+          fallbackCopyText(text);
+        } catch (fallbackError) {
+          manualSelectFallback();
+        }
       }
       setCopiedState();
     } catch (error) {
