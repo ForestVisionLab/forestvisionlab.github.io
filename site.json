@@ -121,7 +121,7 @@
   "citation": {
     "bibtex": "@inproceedings{cv4eo2026,\n  title = {Under-Canopy Terrain Reconstruction in Dense Forests Using RGB Imaging and Neural 3D Reconstruction},\n  author = {Sheffer, Refael and Pinchover, Chen and Zisman, Haim and Ozeri, Dror and Litman, Roee},\n  booktitle = {WACV 2026 Workshop (CV4EO)},\n  year = {2026},\n  note = {BibTeX placeholder; update before final release}\n}"
   },
-  "acknowledgements": "Acknowledgements coming soon. Add funding sources, collaborators, and dataset providers.",
+  "acknowledgements": "",
   "contact": {
     "email": "contact@forestvisionlab.org",
     "note": "Placeholder contact email; update with the paper corresponding author."
