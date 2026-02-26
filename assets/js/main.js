@@ -360,10 +360,20 @@ const renderVideos = (videos) => {
     }
 
     if (video.description) {
+      const details = document.createElement("details");
+      details.className = "media-details";
+      details.open = window.matchMedia("(min-width: 768px)").matches;
+
+      const summary = document.createElement("summary");
+      summary.textContent = "Processing details";
+
       const description = document.createElement("p");
       description.className = "media-description";
       description.textContent = video.description;
-      card.appendChild(description);
+
+      details.appendChild(summary);
+      details.appendChild(description);
+      card.appendChild(details);
     }
     grid.appendChild(card);
   });

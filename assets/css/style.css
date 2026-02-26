@@ -306,9 +306,26 @@ ol {
   white-space: normal;
 }
 
+.media-details {
+  border-top: 1px solid var(--border);
+  padding-top: 0.35rem;
+}
+
+.media-details summary {
+  cursor: pointer;
+  font-weight: 600;
+  color: var(--accent-dark);
+  font-size: 0.95rem;
+}
+
+.media-details summary::marker {
+  color: var(--accent-dark);
+}
+
 .media-description {
   font-size: 0.95rem;
   color: var(--text);
+  margin-top: 0.45rem;
 }
 
 
