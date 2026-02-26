@@ -284,6 +284,19 @@ ol {
   line-height: 1.3;
 }
 
+.results-comparison-figure {
+  margin: 0;
+  grid-column: 1 / -1;
+}
+
+.results-comparison-figure img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+}
+
 .results-figure-caption {
   font-size: 0.9rem;
 }
