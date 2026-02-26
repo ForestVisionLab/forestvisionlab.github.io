@@ -734,7 +734,6 @@ const renderSite = (data) => {
   setText("#subtitle", site.subtitle, DEFAULT_SITE.subtitle);
   setText("#venue", site.venue, DEFAULT_SITE.venue);
   setText("#abstract-text", site.abstract, "Abstract coming soon.");
-  setText("#acknowledgements-text", site.acknowledgements, "Acknowledgements coming soon.");
   setText("#contact-note", site.contact?.note || "", "");
   citationText = site.citation?.bibtex || "BibTeX will be available soon.";
   setText("#bibtex", citationText);
