@@ -41,7 +41,7 @@ const DEFAULT_SITE = {
   quickLinks: [{ label: "Method Overview", href: "#pipeline", external: false }],
   citation: { bibtex: "" },
   acknowledgements: "",
-  contact: { email: "contact@forestvisionlab.org", note: "" },
+  contact: { email: "forestvision.lab@gmail.com", note: "" },
   logos: [
     {
       src: "assets/img/WACV.png",
