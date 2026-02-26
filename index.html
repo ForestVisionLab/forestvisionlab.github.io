@@ -130,6 +130,35 @@
       <section class="section" id="results">
         <h2>Results</h2>
         <div class="results" id="results-list"></div>
+        <div class="results-extension" aria-label="Perceptual recovery under heavy occlusion">
+          <h3>Perceptual Recovery Under Heavy Occlusion</h3>
+          <p>
+            In a synthetic dense-canopy scene with ground-truth available, our volumetric NeRF-based reconstruction
+            achieves lower LPIPS than vanilla 3DGS (0.56 vs. 0.68), indicating better perceptual recovery of hidden
+            ground structure under severe canopy occlusion.
+          </p>
+          <div class="results-figure-grid" role="group" aria-label="Four-panel qualitative comparison">
+            <figure class="results-panel">
+              <div class="results-panel-placeholder">GT (with canopy)</div>
+              <figcaption>GT (with canopy)</figcaption>
+            </figure>
+            <figure class="results-panel">
+              <div class="results-panel-placeholder">GT (no canopy)</div>
+              <figcaption>GT (no canopy)</figcaption>
+            </figure>
+            <figure class="results-panel">
+              <div class="results-panel-placeholder">vanilla 3DGS</div>
+              <figcaption>vanilla 3DGS</figcaption>
+            </figure>
+            <figure class="results-panel">
+              <div class="results-panel-placeholder">Ours</div>
+              <figcaption>Ours</figcaption>
+            </figure>
+          </div>
+          <p class="muted results-figure-caption">
+            Under heavy canopy occlusion, our method preserves more perceptual ground structure than vanilla 3DGS.
+          </p>
+        </div>
       </section>
 
       <section class="section" id="media">
