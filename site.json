@@ -119,7 +119,7 @@
     }
   ],
   "citation": {
-    "bibtex": "@inproceedings{cv4eo2026,\n  title = {Under-Canopy Terrain Reconstruction in Dense Forests Using RGB Imaging and Neural 3D Reconstruction},\n  author = {Sheffer, Refael and Pinchover, Chen and Zisman, Haim and Ozeri, Dror and Litman, Roee},\n  booktitle = {WACV 2026 Workshop (CV4EO)},\n  year = {2026},\n  note = {BibTeX placeholder; update before final release}\n}"
+    "bibtex": "@inproceedings{cv4eo2026,\n  title = {Under-Canopy Terrain Reconstruction in Dense Forests Using {RGB} Imaging and Neural {3D} Reconstruction},\n  author = {Refael Sheffer and Chen Pinchover and Haim Zisman and Dror Ozeri and Roee Litman},\n  booktitle = {Proceedings of the IEEE/CVF Winter Conference on Applications of Computer Vision Workshops (CV4EO)},\n  year = {2026}\n}"
   },
   "acknowledgements": "",
   "contact": {
